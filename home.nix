@@ -12,7 +12,7 @@
 
   # This value determines the Home Manager release that your configuration is
   # compatible with.
-  home.stateVersion = "26.05"; 
+  home.stateVersion = "26.05";
 
   # The home.packages option allows you to install Nix packages into your environment.
   home.packages = [
@@ -49,18 +49,30 @@
       package = pkgs.bibata-cursors;
       size = 24;
     };
+    colorScheme = "dark";
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "qt6ct";
+    style.name = "breeze";
+    qt6ctSettings = {
+      Appearance = {
+        style = "Breeze-Dark";
+      };
+    };
   };
 
   services.gnome-keyring.enable = true;
 
   programs = {
-  	yazi = {
-		enable = true;
-		settings = {
-		  mgr = {
-		    show_hidden = false;
-		  };
-		};
-	};
+    yazi = {
+      enable = true;
+      settings = {
+        mgr = {
+          show_hidden = false;
+        };
+      };
+    };
   };
 }
