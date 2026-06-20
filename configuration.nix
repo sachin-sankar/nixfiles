@@ -14,37 +14,37 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+
+    systemd-boot = {
+      enable = true;
+      editor = false;
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Asia/Kolkata";
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IN";
-    LC_IDENTIFICATION = "en_IN";
-    LC_MEASUREMENT = "en_IN";
-    LC_MONETARY = "en_IN";
-    LC_NAME = "en_IN";
-    LC_NUMERIC = "en_IN";
-    LC_PAPER = "en_IN";
-    LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
-  };
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  i18n = {
+    defaultLocale = "en_IN.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_IN.UTF-8";
+      LC_IDENTIFICATION = "en_IN.UTF-8";
+      LC_MEASUREMENT = "en_IN.UTF-8";
+      LC_MONETARY = "en_IN.UTF-8";
+      LC_NAME = "en_IN.UTF-8";
+      LC_NUMERIC = "en_IN.UTF-8";
+      LC_PAPER = "en_IN.UTF-8";
+      LC_TELEPHONE = "en_IN.UTF-8";
+      LC_TIME = "en_IN.UTF-8";
+    };
   };
 
   users.users."sachin" = {
@@ -64,7 +64,6 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # Fixes OpenURI and cursor themes in flatpaks
     config = {
-      # example with hyprland
       hyprland.preferred = [
         "hyprland"
         "gtk"
