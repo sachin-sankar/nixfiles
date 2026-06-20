@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./packages.nix
     inputs.home-manager.nixosModules.default
   ];
 
@@ -69,63 +70,14 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    pkgs.neovim
-    pkgs.kitty
-    pkgs.kdePackages.dolphin
-
-    pkgs.adwaita-icon-theme
-    pkgs.nwg-look
-
-    pkgs.starship
-    pkgs.fzf
-    pkgs.zoxide
-    pkgs.pnpm
-    pkgs.lsd
-
-    pkgs.lazygit
-    pkgs.stow
-
-    pkgs.rclone
-    pkgs.rsync
-    pkgs.rclone-browser
-    pkgs.bat
-    pkgs.btop
-    pkgs.bulky
-    pkgs.cliphist
-    pkgs.docker
-    pkgs.docker-buildx
-    pkgs.docker-compose
-    pkgs.fastfetch
-    pkgs.fladder
-    pkgs.glow
-    pkgs.hyprshot
-    pkgs.jq
-    pkgs.just
-    pkgs.localsend
-    pkgs.losslesscut
-    pkgs.mpv
-    pkgs.nomacs
-    pkgs.ntfs3g
-    pkgs.obsidian
-    pkgs.ollama
-    pkgs.opencode
-    pkgs.ouch
-    pkgs.qbittorrent
-    pkgs.restic
-    pkgs.ripgrep
-    pkgs.syncthing
-    pkgs.tailscale
-    pkgs.typst
-    pkgs.uv
-    pkgs.wl-clipboard
-
-    pkgs.nerd-fonts.jetbrains-mono
-    pkgs.noctalia-shell
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 
   services.displayManager.ly.enable = true;
+
+  services.xserver.enable = true; # to enable the xorg server
+  services.xserver.videoDrivers = [ "amdgpu" ]; # to load the amdgpu kernel module
 
   services.tuned.enable = true;
   services.upower.enable = true;
@@ -141,6 +93,7 @@
     pulse.enable = true;
   };
 
+  programs.nix-ld.enable = true;
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -156,7 +109,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-
     pinentryPackage = pkgs.pinentry-gnome3;
   };
 
