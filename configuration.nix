@@ -8,7 +8,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./packages.nix
+    ./config/packages.nix
+    ./config/services.nix
+    ./config/programs.nix
     inputs.home-manager.nixosModules.default
   ];
 
@@ -73,44 +75,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
-
-  services.displayManager.ly.enable = true;
-
-  services.xserver.enable = true; # to enable the xorg server
-  services.xserver.videoDrivers = [ "amdgpu" ]; # to load the amdgpu kernel module
-
-  services.tuned.enable = true;
-  services.upower.enable = true;
-  services.udisks2.enable = true;
-
-  security.polkit.enable = true;
-  security.soteria.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  programs.nix-ld.enable = true;
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-  };
-  programs.npm.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
-  };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
