@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "dolphin-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1778858013,
+        "narHash": "sha256-qWTcnNs4iivgM09X0JQXpF7Kuxl5kxNxcJkNkLPH8ZQ=",
+        "owner": "MattiDragon",
+        "repo": "dolphin-overlay",
+        "rev": "b9dabd238054ff973e45c05a72345c756e0f286e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MattiDragon",
+        "repo": "dolphin-overlay",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -22,6 +40,21 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1778856625,
+        "narHash": "sha256-ExyHGgqlnO56XEn3NRn3PgdqCuwne+GZ5yLLUC7RE9I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e9e9a640d9a61d77d52da7ac3e755a975a2ed0cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1781577229,
         "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
         "owner": "nixos",
@@ -38,8 +71,9 @@
     },
     "root": {
       "inputs": {
+        "dolphin-overlay": "dolphin-overlay",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "zen-browser": "zen-browser"
       }
     },
