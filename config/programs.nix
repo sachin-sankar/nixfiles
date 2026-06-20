@@ -2,10 +2,19 @@
   programs = {
     nix-ld.enable = true;
     npm.enable = true;
+    zoxide.enable = true;
+    lazygit.enable = true;
+    bat.enable = true;
+    starship.enable = true;
 
     hyprland = {
       enable = true;
       withUWSM = true;
+    };
+
+    localsend = {
+      enable = true;
+      openFirewall = true;
     };
 
     zsh = {
@@ -19,6 +28,11 @@
       enable = true;
       enableSSHSupport = true;
       pinentryPackage = pkgs.pinentry-gnome3;
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
     };
   };
 }

@@ -20,6 +20,26 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    ollama = {
+      enable = true;
+      openFirewall = true;
+      host = "0.0.0.0";
+    };
+
+    syncthing = {
+      enable = true;
+      systemService = true;
+      openDefaultPorts = true;
+      overrideFolders = false;
+      dataDir = "/home/sachin";
+      user = "sachin";
+    };
+
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   security = {
