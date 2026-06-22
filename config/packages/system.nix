@@ -4,7 +4,6 @@
     pkgs.kdePackages.dolphin
     pkgs.fzf
     pkgs.ffmpeg
-    pkgs.pnpm
     pkgs.lsd
     pkgs.stow
     pkgs.rclone
@@ -13,27 +12,20 @@
     pkgs.btop
     pkgs.bulky
     pkgs.cliphist
-    pkgs.docker
-    pkgs.docker-buildx
-    pkgs.docker-compose
     pkgs.fastfetch
     pkgs.fladder
     pkgs.glow
     pkgs.hyprshot
     pkgs.jq
-    pkgs.just
     pkgs.losslesscut
     pkgs.mpv
     pkgs.nomacs
     pkgs.ntfs3g
     pkgs.obsidian
-    pkgs.opencode
     pkgs.ouch
     pkgs.qbittorrent
     pkgs.restic
     pkgs.ripgrep
-    pkgs.typst
-    pkgs.uv
     pkgs.wl-clipboard
     pkgs.lutris
     pkgs.protonup-rs

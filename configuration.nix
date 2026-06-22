@@ -8,7 +8,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./config/packages.nix
+    ./config/packages/system.nix
+    ./config/packages/devtools.nix
     ./config/services.nix
     ./config/programs.nix
     inputs.home-manager.nixosModules.default
