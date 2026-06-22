@@ -3,6 +3,7 @@
     pkgs.kitty
     pkgs.kdePackages.dolphin
     pkgs.fzf
+    pkgs.ffmpeg
     pkgs.pnpm
     pkgs.lsd
     pkgs.stow
@@ -37,6 +38,7 @@
     pkgs.lutris
     pkgs.protonup-rs
     pkgs.noctalia-shell
+    pkgs.gum
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

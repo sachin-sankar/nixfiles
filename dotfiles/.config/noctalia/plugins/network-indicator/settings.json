@@ -1,0 +1,33 @@
+{
+  "iconType": "caret",
+  "byteThresholdActive": 5000,
+  "fontSizeModifier": 0.75,
+  "iconSizeModifier": 1,
+  "useCustomColors": false,
+  "useCustomFont": false,
+  "customFontBold": false,
+  "customFontItalic": false,
+  "columnSpacing": 0,
+  "rowSpacing": -8,
+  "paddingLeft": 5,
+  "paddingRight": 0,
+  "layout": "vertical",
+  "slots": [
+    "none",
+    "txIcon",
+    "none",
+    "rxIcon"
+  ],
+  "arrowType": "chevron",
+  "showNumbers": false,
+  "spacingInbetween": -3,
+  "horizontalLayout": false,
+  "contentMargin": 2,
+  "customFontFamily": "",
+  "colorSilent": "#16134f",
+  "colorTx": "#bc8cff",
+  "colorRx": "#58a6ff",
+  "colorText": "#4d8b949e",
+  "colorFont": "#c9d1d9",
+  "colorBackground": "#00000000"
+}

@@ -21,7 +21,49 @@
 
   # Home Manager is pretty good at managing dotfiles.
   home.file = {
-    # Custom file mappings go here
+    ".config/mpv" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/mpv";
+      recursive = true;
+    };
+    ".config/hypr" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/hypr";
+      recursive = true;
+    };
+    ".config/kitty" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/kitty";
+      recursive = true;
+    };
+    ".config/ly" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/ly";
+      recursive = true;
+    };
+    ".config/noctalia" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/noctalia/";
+      recursive = true;
+    };
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/nvim";
+      recursive = true;
+    };
+    ".config/rclone" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/rclone";
+      recursive = true;
+    };
+    ".config/uwsm" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/uwsm";
+      recursive = true;
+    };
+    ".config/starship.toml" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.config/starship.toml";
+    };
+    ".zshrc" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.zshrc";
+    };
+    "scripts" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/scripts";
+      recursive = true;
+    };
+
   };
 
   # Home Manager can also manage your environment variables.
@@ -57,13 +99,8 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "qt6ct";
-    style.name = "breeze";
-    qt6ctSettings = {
-      Appearance = {
-        style = "Breeze-Dark";
-      };
-    };
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
   };
 
   services.gnome-keyring.enable = true;
@@ -73,7 +110,7 @@
       enable = true;
       settings = {
         mgr = {
-          show_hidden = false;
+          show_hidden = true;
         };
       };
     };
