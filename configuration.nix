@@ -32,6 +32,14 @@
     "nix-command"
     "flakes"
   ];
+  nix = {
+    optimise.automatic = true;
+    gc = {
+      automatic = true;
+      dates = [ "daily" ];
+      options = "--delete-older-than 2d";
+    };
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

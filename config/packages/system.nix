@@ -5,7 +5,6 @@
     pkgs.fzf
     pkgs.ffmpeg
     pkgs.lsd
-    pkgs.stow
     pkgs.rclone
     pkgs.rsync
     pkgs.rclone-browser
