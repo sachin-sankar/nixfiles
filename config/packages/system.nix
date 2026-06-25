@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     pkgs.kitty
     pkgs.kdePackages.dolphin
+    pkgs.kdePackages.kio-extras
     pkgs.fzf
     pkgs.ffmpeg
     pkgs.lsd

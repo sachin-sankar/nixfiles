@@ -6,7 +6,7 @@ return {
 	},
 	opts = {
 		ring = {
-			storage = "sqlite",
+			storage = "shada",
 		},
 		highlight = {
 			on_put = true,
