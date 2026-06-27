@@ -22,15 +22,18 @@
     pkgs.nomacs
     pkgs.ntfs3g
     pkgs.obsidian
-    pkgs.ouch
+    pkgs.ouch-rar
     pkgs.qbittorrent
     pkgs.restic
     pkgs.ripgrep
+    pkgs.libreoffice-fresh
     pkgs.wl-clipboard
     pkgs.lutris
     pkgs.protonup-rs
     pkgs.noctalia-shell
     pkgs.gum
+    pkgs.mangohud
+    pkgs.aria2
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

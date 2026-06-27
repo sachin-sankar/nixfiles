@@ -5,4 +5,4 @@ pnpm -g --ignore-scripts update
 uv tool upgrade --all
 nvim --headless "+Lazy! update" +qa
 skills update -g
-pi update
+pi update --extensions
