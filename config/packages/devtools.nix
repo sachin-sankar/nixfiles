@@ -31,5 +31,6 @@
     pkgs.docker-compose
     pkgs.just
     pkgs.opencode
+    pkgs.github-cli
   ];
 }

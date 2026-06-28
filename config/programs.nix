@@ -6,6 +6,7 @@
     lazygit.enable = true;
     bat.enable = true;
     starship.enable = true;
+    nh.enable = true;
 
     hyprland = {
       enable = true;
@@ -33,6 +34,11 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+    };
+
+    appimage = {
+      enable = true;
+      binfmt = true;
     };
   };
 }

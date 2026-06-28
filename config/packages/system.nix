@@ -9,7 +9,7 @@
     pkgs.rclone
     pkgs.rsync
     pkgs.rclone-browser
-    pkgs.btop
+    pkgs.btop-rocm
     pkgs.bulky
     pkgs.cliphist
     pkgs.fastfetch
@@ -34,6 +34,7 @@
     pkgs.gum
     pkgs.mangohud
     pkgs.aria2
+    pkgs.pass
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

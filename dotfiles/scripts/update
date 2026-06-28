@@ -1,6 +1,6 @@
 set -euo pipefail
 
-sudo nixos-rebuild switch --upgrade --flake ~/nixfiles/
+nh os switch -u ~/nixfiles
 pnpm -g --ignore-scripts update
 uv tool upgrade --all
 nvim --headless "+Lazy! update" +qa

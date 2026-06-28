@@ -17,7 +17,7 @@
       tag.gpgsign = true;
       credential = {
         helper = "manager";
-        credentialStore = "secretservice";
+        credentialStore = "gpg";
         "https://github.com".username = "sachin-sankar";
       };
     };
