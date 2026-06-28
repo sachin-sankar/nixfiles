@@ -6,6 +6,7 @@
     udisks2.enable = true;
     gvfs.enable = true;
     lact.enable = true;
+    playerctld.enable = true;
 
     xserver = {
       enable = true;
