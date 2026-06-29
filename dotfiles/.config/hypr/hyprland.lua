@@ -4,10 +4,10 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-  output = "",
-  mode = "highres@highrr",
-  position = "auto",
-  scale = "1",
+	output = "",
+	mode = "highres@highrr",
+	position = "auto",
+	scale = "1",
 })
 
 -------------------
@@ -16,9 +16,9 @@ hl.monitor({
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on("hyprland.start", function()
-  hl.exec_cmd("wl-paste --watch cliphist store")
-  hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-  hl.exec_cmd("noctalia-shell")
+	hl.exec_cmd("wl-paste --watch cliphist store")
+	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("noctalia-shell")
 end)
 
 -----------------------
@@ -27,52 +27,52 @@ end)
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
-  general = {
-    gaps_in = 0,
-    gaps_out = 0,
+	general = {
+		gaps_in = 0,
+		gaps_out = 0,
 
-    border_size = 0,
+		border_size = 0,
 
-    col = {
-      active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-      inactive_border = "rgba(595959aa)",
-    },
+		col = {
+			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+			inactive_border = "rgba(595959aa)",
+		},
 
-    -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-    resize_on_border = false,
+		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
+		resize_on_border = false,
 
-    -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
-    allow_tearing = false,
+		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
+		allow_tearing = false,
 
-    layout = "dwindle",
-  },
+		layout = "dwindle",
+	},
 
-  decoration = {
-    rounding = 0,
-    rounding_power = 2,
+	decoration = {
+		rounding = 0,
+		rounding_power = 2,
 
-    -- Change transparency of focused and unfocused windows
-    active_opacity = 1.0,
-    inactive_opacity = 1.0,
+		-- Change transparency of focused and unfocused windows
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
 
-    shadow = {
-      enabled = false,
-      range = 4,
-      render_power = 3,
-      color = 0xee1a1a1a,
-    },
+		shadow = {
+			enabled = false,
+			range = 4,
+			render_power = 3,
+			color = 0xee1a1a1a,
+		},
 
-    blur = {
-      enabled = false,
-      size = 3,
-      passes = 1,
-      vibrancy = 0.1696,
-    },
-  },
+		blur = {
+			enabled = false,
+			size = 3,
+			passes = 1,
+			vibrancy = 0.1696,
+		},
+	},
 
-  animations = {
-    enabled = true,
-  },
+	animations = {
+		enabled = true,
+	},
 })
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
@@ -123,23 +123,23 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
-  dwindle = {
-    preserve_split = true, -- You probably want this
-  },
+	dwindle = {
+		preserve_split = true, -- You probably want this
+	},
 })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
-  master = {
-    new_status = "master",
-  },
+	master = {
+		new_status = "master",
+	},
 })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
 hl.config({
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
+	scrolling = {
+		fullscreen_on_one_column = true,
+	},
 })
 
 ----------------
@@ -147,10 +147,10 @@ hl.config({
 ----------------
 
 hl.config({
-  misc = {
-    force_default_wallpaper = 1,  -- Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
-  },
+	misc = {
+		force_default_wallpaper = 1, -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
+	},
 })
 
 ---------------
@@ -158,27 +158,27 @@ hl.config({
 ---------------
 
 hl.config({
-  input = {
-    kb_layout = "us",
-    kb_variant = "",
-    kb_model = "",
-    kb_options = "caps:escape",
-    kb_rules = "",
+	input = {
+		kb_layout = "us",
+		kb_variant = "",
+		kb_model = "",
+		kb_options = "caps:escape",
+		kb_rules = "",
 
-    follow_mouse = 1,
+		follow_mouse = 1,
 
-    sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
-    touchpad = {
-      natural_scroll = true,
-    },
-  },
+		touchpad = {
+			natural_scroll = true,
+		},
+	},
 })
 
 hl.gesture({
-  fingers = 3,
-  direction = "horizontal",
-  action = "workspace",
+	fingers = 3,
+	direction = "horizontal",
+	action = "workspace",
 })
 
 ---------------------
@@ -203,13 +203,13 @@ hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("lutris"))
 
 hl.bind(mainMod .. " + S", hl.dsp.submap("swap_window"))
 hl.define_submap("swap_window", function()
-  hl.bind("left", hl.dsp.window.swap({ direction = "left" }))
-  hl.bind("right", hl.dsp.window.swap({ direction = "right" }))
-  hl.bind("up", hl.dsp.window.swap({ direction = "up" }))
-  hl.bind("down", hl.dsp.window.swap({ direction = "down" }))
+	hl.bind("left", hl.dsp.window.swap({ direction = "left" }))
+	hl.bind("right", hl.dsp.window.swap({ direction = "right" }))
+	hl.bind("up", hl.dsp.window.swap({ direction = "up" }))
+	hl.bind("down", hl.dsp.window.swap({ direction = "down" }))
 
-  hl.bind("Escape", hl.dsp.submap("reset"))
-  hl.bind("Return", hl.dsp.submap("reset"))
+	hl.bind("Escape", hl.dsp.submap("reset"))
+	hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region"))
@@ -224,9 +224,9 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
-  local key = i % 10 -- 10 maps to key 0
-  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	local key = i % 10 -- 10 maps to key 0
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
@@ -243,29 +243,35 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
-  "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-  { locked = true, repeating = true }
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-  { locked = true, repeating = true }
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioMute",
-  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-  { locked = true, repeating = true }
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioMicMute",
-  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-  { locked = true, repeating = true }
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	{ locked = true, repeating = true }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia-shell ipc call brightness increase"),
-  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"),
-  { locked = true, repeating = true })
+hl.bind(
+	"XF86MonBrightnessUp",
+	hl.dsp.exec_cmd("noctalia-shell ipc call brightness increase"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86MonBrightnessDown",
+	hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"),
+	{ locked = true, repeating = true }
+)
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
@@ -283,24 +289,24 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Example window rules that are useful
 
 hl.window_rule({
-  -- Ignore maximize requests from all apps. You'll probably like this.
-  name = "suppress-maximize-events",
-  match = { class = ".*" },
+	-- Ignore maximize requests from all apps. You'll probably like this.
+	name = "suppress-maximize-events",
+	match = { class = ".*" },
 
-  suppress_event = "maximize",
+	suppress_event = "maximize",
 })
 
 hl.window_rule({
-  -- Fix some dragging issues with XWayland
-  name = "fix-xwayland-drags",
-  match = {
-    class = "^$",
-    title = "^$",
-    xwayland = true,
-    float = true,
-    fullscreen = false,
-    pin = false,
-  },
+	-- Fix some dragging issues with XWayland
+	name = "fix-xwayland-drags",
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		float = true,
+		fullscreen = false,
+		pin = false,
+	},
 
-  no_focus = true,
+	no_focus = true,
 })

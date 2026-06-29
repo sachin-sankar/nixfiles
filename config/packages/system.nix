@@ -5,6 +5,7 @@
     pkgs.kdePackages.kio-extras
     pkgs.fzf
     pkgs.ffmpeg
+    pkgs.mediainfo
     pkgs.lsd
     pkgs.rclone
     pkgs.rsync

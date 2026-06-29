@@ -5,8 +5,16 @@
     upower.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
-    lact.enable = true;
     playerctld.enable = true;
+
+    logind = {
+      enable = true;
+      settings.Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchDocked = "ignore";
+      };
+    };
 
     xserver = {
       enable = true;
