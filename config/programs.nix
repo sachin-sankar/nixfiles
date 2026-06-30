@@ -7,6 +7,7 @@
     bat.enable = true;
     starship.enable = true;
     nh.enable = true;
+    gamemode.enable = true;
 
     hyprland = {
       enable = true;

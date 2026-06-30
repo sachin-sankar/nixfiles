@@ -36,6 +36,10 @@
     pkgs.mangohud
     pkgs.aria2
     pkgs.pass
+    pkgs.mesa
+    pkgs.vulkan-loader
+    pkgs.libGL
+    pkgs.libGLU
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
