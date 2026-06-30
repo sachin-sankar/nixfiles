@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     pkgs.kitty
     pkgs.kdePackages.dolphin
+    kdePackages.ffmpegthumbs
     pkgs.kdePackages.kio-extras
     pkgs.fzf
     pkgs.ffmpeg
@@ -40,6 +41,8 @@
     pkgs.vulkan-loader
     pkgs.libGL
     pkgs.libGLU
+    pkgs.mkvtoolnix-cli
+    pkgs.wget
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

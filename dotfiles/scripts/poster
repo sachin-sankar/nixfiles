@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command fails
+set -e
+
+# 1. Validate that both required arguments are passed
+if [ -z "$1" ] || [ -z "$2" ]; then
+    gum style --foreground 196 --bold "Error: Missing arguments."
+    echo "Usage: $0 <movie_file.mkv> <poster_local_path_OR_url>"
+    exit 1
+fi
+
+VIDEO_FILE="$1"
+INPUT_POSTER="$2"
+IS_URL=false
+
+# 2. Check if the video file exists
+if [ ! -f "$VIDEO_FILE" ]; then
+    gum style --foreground 196 "Error: Video file '$VIDEO_FILE' not found."
+    exit 1
+fi
+
+# 3. Handle URL vs. Local File
+if [[ "$INPUT_POSTER" =~ ^https?:// ]]; then
+    IS_URL=true
+    POSTER_FILE="downloaded_poster_temp"
+    
+    # Download function for the Gum spinner
+    download_poster() {
+        # Using --trust-server-names lets wget save the file with its original extension if possible
+        wget -q --trust-server-names -O "$POSTER_FILE" "$INPUT_POSTER"
+    }
+    export -f download_poster
+    export POSTER_FILE INPUT_POSTER
+    
+    # Run download inside a Gum spinner
+    gum spin --spinner="dot" --title="Downloading image from URL..." -- bash -c download_poster
+else
+    POSTER_FILE="$INPUT_POSTER"
+    # Verify local file exists
+    if [ ! -f "$POSTER_FILE" ]; then
+        gum style --foreground 196 "Error: Local poster file '$POSTER_FILE' not found."
+        exit 1
+    fi
+fi
+
+# 4. Dynamically detect image type from the file extension
+# If it's a downloaded file without an extension, we fallback to jpg
+IMAGE_EXT=$(echo "${POSTER_FILE##*.}" | tr '[:upper:]' '[:lower:]')
+if [ "$IMAGE_EXT" = "$POSTER_FILE" ]; then
+    IMAGE_EXT="jpg"
+fi
+
+MIME_TYPE="image/jpeg"
+if [ "$IMAGE_EXT" = "png" ]; then
+    MIME_TYPE="image/png"
+fi
+
+VIDEO_EXT="${VIDEO_FILE##*.}"
+
+# 5. Define the embedding function for the Gum spinner
+embed_poster() {
+    mkvmerge -o "temp_output.${VIDEO_EXT}" \
+      --no-attachments "$VIDEO_FILE" \
+      --attachment-name "cover.${IMAGE_EXT}" \
+      --attachment-mime-type "$MIME_TYPE" \
+      --attach-file "$POSTER_FILE" &> /dev/null
+}
+
+# Export variables for the background spinner subshell
+export VIDEO_FILE POSTER_FILE IMAGE_EXT MIME_TYPE VIDEO_EXT
+export -f embed_poster
+
+# 6. Run the embedding process inside a clean Gum Spinner
+gum spin --spinner="dot" --title="Embedding cover into $VIDEO_FILE..." -- bash -c embed_poster
+
+# 7. Final overwrite and replace
+mv "temp_output.${VIDEO_EXT}" "$VIDEO_FILE"
+
+# 8. Clean up temporary downloaded file if it was a URL
+if [ "$IS_URL" = true ]; then
+    rm -f "$POSTER_FILE"
+fi
+
+# 9. Print beautiful Markdown success panel using Gum
+gum format "# Success!
+Embedded artwork ($MIME_TYPE) directly into **$VIDEO_FILE**."
+

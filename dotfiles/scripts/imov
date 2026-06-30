@@ -1,0 +1,2 @@
+url=$(curl -sG "https://imdb.iamidiotareyoutoo.com/search" --data-urlencode "q=$1"  | jq -r '.description.[0]."#IMG_POSTER"')
+poster "$1" $url
