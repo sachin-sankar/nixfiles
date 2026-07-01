@@ -1,6 +1,6 @@
 {
   "iconType": "caret",
-  "byteThresholdActive": 5000,
+  "byteThresholdActive": 1,
   "fontSizeModifier": 0.75,
   "iconSizeModifier": 1,
   "useCustomColors": false,
