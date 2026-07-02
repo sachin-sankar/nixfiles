@@ -1,4 +1,5 @@
 { config, ... }: {
+  virtualisation.docker.enable = true;
   services = {
     displayManager.ly.enable = true;
     tuned.enable = true;

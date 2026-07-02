@@ -32,5 +32,6 @@
     pkgs.just
     pkgs.opencode
     pkgs.github-cli
+    pkgs.pi-coding-agent
   ];
 }
