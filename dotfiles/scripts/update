@@ -1,6 +1,6 @@
 set -euo pipefail
 
-nh os switch -u ~/nixfiles
+nh os switch -u --refresh ~/nixfiles
 pnpm -g --ignore-scripts update
 uv tool upgrade --all
 nvim --headless "+Lazy! update" +qa
