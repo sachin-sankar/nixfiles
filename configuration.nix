@@ -26,6 +26,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   time.timeZone = "Asia/Kolkata";
   nix.settings.experimental-features = [

@@ -8,6 +8,7 @@
     starship.enable = true;
     nh.enable = true;
     gamemode.enable = true;
+    dconf.enable = true;
 
     hyprland = {
       enable = true;
@@ -16,7 +17,6 @@
 
     localsend = {
       enable = true;
-      openFirewall = true;
     };
 
     zsh = {

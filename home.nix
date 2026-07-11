@@ -77,6 +77,7 @@
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     hyprcursor.enable = true;
     package = pkgs.bibata-cursors;
@@ -90,6 +91,10 @@
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
       size = 22;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
     colorScheme = "dark";
     font = {
