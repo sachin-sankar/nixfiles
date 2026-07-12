@@ -176,12 +176,6 @@
                 {
                     "displayMode": "onhover",
                     "iconColor": "none",
-                    "id": "Bluetooth",
-                    "textColor": "none"
-                },
-                {
-                    "displayMode": "onhover",
-                    "iconColor": "none",
                     "id": "Network",
                     "textColor": "none"
                 },
@@ -640,7 +634,7 @@
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/home/sachin/dotfiles/.config/hypr",
+        "directory": "/home/sachin/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [
@@ -658,7 +652,7 @@
         "randomIntervalSec": 300,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
-        "skipStartupTransition": false,
+        "skipStartupTransition": true,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",
         "transitionDuration": 1500,

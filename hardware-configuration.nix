@@ -49,8 +49,9 @@
     enable = true;
     enable32Bit = true;
   };
+
   hardware.bluetooth = {
-    enable = true;
+    enable = false;
     settings = {
       General = {
         Experimental = true;

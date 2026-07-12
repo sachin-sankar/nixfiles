@@ -9,6 +9,7 @@
     nh.enable = true;
     gamemode.enable = true;
     dconf.enable = true;
+    steam.enable = true;
 
     hyprland = {
       enable = true;
