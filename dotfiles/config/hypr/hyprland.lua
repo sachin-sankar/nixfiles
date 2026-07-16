@@ -200,6 +200,7 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian %U"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
 hl.bind(mainMod .. " + X", hl.dsp.dpms("toggle"))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("lutris"))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("kitty -e yazi"))
 
 hl.bind(mainMod .. " + S", hl.dsp.submap("swap_window"))
 hl.define_submap("swap_window", function()

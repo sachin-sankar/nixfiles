@@ -28,6 +28,10 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
 
+  zramSwap = {
+    enable = true;
+  };
+
   time.timeZone = "Asia/Kolkata";
   nix.settings.experimental-features = [
     "nix-command"

@@ -43,6 +43,7 @@
     pkgs.libGLU
     pkgs.mkvtoolnix-cli
     pkgs.wget
+    pkgs.proton-vpn
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
