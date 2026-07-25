@@ -45,5 +45,7 @@
     pkgs.wget
     pkgs.proton-vpn
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.tesseract
+    pkgs.miktex
   ];
 }
