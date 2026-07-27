@@ -1,40 +1,81 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-synced_count=0
-unsynced_count=0
-no_lyrics_count=0
-instrumental_count=0
-total_count=0
+for tool in gum exiftool xargs; do
+  if ! command -v "$tool" &>/dev/null; then
+    echo "Error: '$tool' is required but not installed."
+    exit 1
+  fi
+done
 
-while IFS= read -r file; do
-  ((total_count++))
+SEARCH_DIR="${1:-$HOME/Music}"
+SEARCH_DIR=$(eval echo "$SEARCH_DIR")
+
+if [ ! -d "$SEARCH_DIR" ]; then
+  gum style --foreground 196 "Directory '$SEARCH_DIR' does not exist."
+  exit 1
+fi
+
+gum style --foreground 212 --bold --margin "1 0" "Scanning FLAC Lyrics in: $SEARCH_DIR"
+
+process_file() {
+  file="$1"
+  filename=$(basename "$file")
+  dir_path=$(dirname "$file")
 
   lyrics=$(exiftool -s3 -Lyrics "$file" 2>/dev/null)
 
   if [ -n "$lyrics" ]; then
     if echo "$lyrics" | grep -qiE '\[(ar|au):\s*instrumental\]|^instrumental$|\[instrumental\]'; then
-      echo "♪ $file - Instrumental"
-      ((instrumental_count++))
+      status="INSTRUMENTAL"
+      badge=$(gum style --background 33 --foreground 0 --bold --padding "0 1" " INSTRUMENTAL ")
     elif echo "$lyrics" | grep -qE '\[[0-9]{2,}:[0-9]{2}\.[0-9]{2,}\]'; then
-      echo "✓ $file - HAS synced lyrics"
-      ((synced_count++))
+      status="SYNCED"
+      badge=$(gum style --background 46 --foreground 0 --bold --padding "0 1" " SYNCED ")
     else
-      echo "✗ $file - Has lyrics but NOT synced"
-      ((unsynced_count++))
+      status="UNSYNCED"
+      badge=$(gum style --background 208 --foreground 0 --bold --padding "0 1" " UNSYNCED ")
     fi
   else
-    echo "  $file - No lyrics found"
-    ((no_lyrics_count++))
+    status="NONE"
+    badge=$(gum style --background 240 --foreground 15 --padding "0 1" " NO LYRICS ")
   fi
-done < <(find . -type f -iname "*.flac")
+
+  file_label=$(gum style --bold "$filename" --foreground 252)
+  path_label=$(gum style --faint "($dir_path)")
+
+  echo -e "${badge} ${file_label} ${path_label}" >&2
+
+  echo "$status"
+}
+
+export -f process_file
+
+TEMP_FIND=$(mktemp)
+
+gum spin --spinner dot --title "Locating FLAC files..." -- find "$SEARCH_DIR" -type f -iname "*.flac" -print0 >"$TEMP_FIND"
+
+if [ ! -s "$TEMP_FIND" ]; then
+  gum style --margin "1 0" --foreground 214 "No .flac files found in $SEARCH_DIR"
+  rm "$TEMP_FIND"
+  exit 0
+fi
+
+STATUS_STREAM=$(xargs -0 -P 8 -a "$TEMP_FIND" -I {} bash -c 'process_file "$1"' _ {})
+rm "$TEMP_FIND"
+
+total_count=$(echo "$STATUS_STREAM" | wc -l | tr -d ' ')
+synced_count=$(echo "$STATUS_STREAM" | grep -c "^SYNCED$" || true)
+unsynced_count=$(echo "$STATUS_STREAM" | grep -c "^UNSYNCED$" || true)
+instrumental_count=$(echo "$STATUS_STREAM" | grep -c "^INSTRUMENTAL$" || true)
+no_lyrics_count=$(echo "$STATUS_STREAM" | grep -c "^NONE$" || true)
+
+SYNCED_CARD=$(gum style --border normal --border-foreground 46 --padding "0 2" --align center "Synced" "$synced_count")
+UNSYNCED_CARD=$(gum style --border normal --border-foreground 208 --padding "0 2" --align center "Unsynced" "$unsynced_count")
+INST_CARD=$(gum style --border normal --border-foreground 33 --padding "0 2" --align center "Instrumental" "$instrumental_count")
+NONE_CARD=$(gum style --border normal --border-foreground 240 --padding "0 2" --align center "No Lyrics" "$no_lyrics_count")
+
+SUMMARY_HEADER=$(gum style --bold --foreground 212 "SUMMARY REPORT (Total Scanned: $total_count)")
+CARDS_JOINED=$(gum join --horizontal "$SYNCED_CARD" "$UNSYNCED_CARD" "$INST_CARD" "$NONE_CARD")
 
 echo ""
-echo "================================"
-echo "         SUMMARY"
-echo "================================"
-echo "Total files scanned:     $total_count"
-echo "Synced lyrics:           $synced_count"
-echo "Unsynced lyrics:         $unsynced_count"
-echo "Instrumental:            $instrumental_count"
-echo "No lyrics:               $no_lyrics_count"
-echo "================================"
+gum style --border rounded --padding "1 2" --border-foreground 212 "$SUMMARY_HEADER" "" "$CARDS_JOINED"

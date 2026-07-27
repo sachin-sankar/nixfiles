@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+if ! command -v gum &>/dev/null; then
+  echo "Error: 'gum' is not installed. Please install it first."
+  exit 1
+fi
+
+TARGET_DIR=$(eval echo "${1:-.}")
+if [ ! -d "$TARGET_DIR" ]; then
+  gum style --foreground 196 "Directory '$TARGET_DIR' does not exist."
+  exit 1
+fi
+
+MAX_LEN=0
+FOLDERS=()
+
+for folder in "$TARGET_DIR"/*/; do
+  [ -d "$folder" ] || continue
+  FOLDERS+=("$folder")
+  folder_name=$(basename "$folder")
+
+  if [ -d "$folder/.git" ]; then
+    branch=$(git -C "$folder" rev-parse --abbrev-ref HEAD 2>/dev/null)
+    label_text="$folder_name ($branch)"
+  else
+    label_text="$folder_name"
+  fi
+
+  len=${#label_text}
+  if [ "$len" -gt "$MAX_LEN" ]; then
+    MAX_LEN=$len
+  fi
+done
+
+COLUMN_WIDTH=$((MAX_LEN + 4))
+
+check_repo() {
+  folder="$1"
+  column_width="$2"
+  folder_name=$(basename "$folder")
+
+  if [ -d "$folder/.git" ]; then
+    cd "$folder" || return
+
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    upstream=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2>/dev/null)
+
+    if [ -z "$upstream" ]; then
+      badge_text="NO UPSTREAM"
+      bg_color="214"
+      fg_color="0"
+    else
+      LOCAL=$(git rev-parse @ 2>/dev/null)
+      REMOTE=$(git rev-parse "$upstream" 2>/dev/null)
+      BASE=$(git merge-base @ "$upstream" 2>/dev/null)
+
+      if [ "$LOCAL" = "$REMOTE" ]; then
+        badge_text="UP TO DATE"
+        bg_color="46"
+        fg_color="0"
+      elif [ "$LOCAL" = "$BASE" ]; then
+        badge_text="BEHIND"
+        bg_color="196"
+        fg_color="15"
+      elif [ "$REMOTE" = "$BASE" ]; then
+        badge_text="AHEAD"
+        bg_color="208"
+        fg_color="0"
+      else
+        badge_text="DIVERGED"
+        bg_color="129"
+        fg_color="15"
+      fi
+    fi
+
+    repo_label=$(gum style --bold --width "$column_width" "$folder_name ($branch)")
+    badge=$(gum style --background "$bg_color" --foreground "$fg_color" --bold --padding "0 1" " $badge_text ")
+    echo -e "${repo_label}${badge}"
+  else
+    repo_label=$(gum style --bold --foreground 240 --width "$column_width" "$folder_name")
+    badge=$(gum style --background 240 --foreground 15 --padding "0 1" " NOT GIT ")
+    echo -e "${repo_label}${badge}"
+  fi
+}
+
+export -f check_repo
+
+printf "%s\n" "${FOLDERS[@]}" | xargs -P 8 -I {} bash -c 'check_repo "$1" "$2"' _ {} "$COLUMN_WIDTH"
