@@ -47,5 +47,6 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.tesseract
     pkgs.miktex
+    pkgs.texlab
   ];
 }

@@ -55,5 +55,14 @@ return {
 		},
 	},
 	yamlls = {},
-  nixd = {}
+	nixd = {},
+	texlab = {
+		settings = {
+			texlab = {
+				build = {
+					onSave = true,
+				},
+			},
+		},
+	},
 }
