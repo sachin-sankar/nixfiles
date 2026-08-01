@@ -48,5 +48,6 @@
     pkgs.tesseract
     pkgs.miktex
     pkgs.texlab
+    pkgs.gnome-disk-utility
   ];
 }
