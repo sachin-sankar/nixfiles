@@ -65,4 +65,18 @@ return {
 			},
 		},
 	},
+	biome = {
+		filetypes = {
+			"css",
+			"scss",
+			"less",
+			"html",
+			"handlebars",
+			"twig",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+			"vue",
+		},
+	},
 }

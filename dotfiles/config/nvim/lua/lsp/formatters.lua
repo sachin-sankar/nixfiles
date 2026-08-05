@@ -5,6 +5,7 @@ return {
 	sh = { "shfmt" },
 	typst = { "typstyle", opts = { lsp_format = "prefer" } },
 	typescript = { "oxfmt" },
+	typescriptreact = { "oxfmt" },
 	yaml = { "oxfmt" },
-  nix = {"nixfmt"}
+	nix = { "nixfmt" },
 }

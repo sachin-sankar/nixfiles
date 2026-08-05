@@ -23,6 +23,8 @@
     pkgs.taplo
     pkgs.shfmt
     pkgs.typstyle
+    pkgs.nixd
+    pkgs.vtsls
 
     pkgs.pnpm
     pkgs.uv
