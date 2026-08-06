@@ -1,39 +1,39 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    pkgs.go
-    pkgs.gcc
-    pkgs.typst
+    go
+    gcc
+    typst
 
-    pkgs.ty
-    pkgs.ruff
-    pkgs.oxfmt
-    pkgs.oxlint
-    pkgs.templ
-    pkgs.gopls
-    pkgs.nixfmt
-    pkgs.bash-language-server
-    pkgs.docker-language-server
-    pkgs.docker-compose-language-service
-    pkgs.stylua
-    pkgs.lua-language-server
-    pkgs.tailwindcss-language-server
-    pkgs.tinymist
-    pkgs.biome
-    pkgs.yaml-language-server
-    pkgs.taplo
-    pkgs.shfmt
-    pkgs.typstyle
-    pkgs.nixd
-    pkgs.vtsls
+    ty
+    ruff
+    oxfmt
+    oxlint
+    templ
+    gopls
+    nixfmt
+    bash-language-server
+    docker-language-server
+    docker-compose-language-service
+    stylua
+    lua-language-server
+    tailwindcss-language-server
+    tinymist
+    biome
+    yaml-language-server
+    taplo
+    shfmt
+    typstyle
+    nixd
+    vtsls
 
-    pkgs.pnpm
-    pkgs.uv
-    pkgs.docker
-    pkgs.docker-buildx
-    pkgs.docker-compose
-    pkgs.just
-    pkgs.opencode
-    pkgs.github-cli
-    pkgs.pi-coding-agent
+    pnpm
+    uv
+    docker
+    docker-buildx
+    docker-compose
+    just
+    opencode
+    github-cli
+    pi-coding-agent
   ];
 }
