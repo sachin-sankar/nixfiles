@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -70,7 +69,6 @@
       "wheel"
       "docker"
     ];
-    packages = with pkgs; [ ];
   };
 
   users.defaultUserShell = pkgs.zsh;

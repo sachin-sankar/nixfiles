@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   programs = {
     nix-ld.enable = true;
     npm.enable = true;

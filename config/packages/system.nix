@@ -1,53 +1,57 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
+
+    # CLI
     kitty
-    kdePackages.dolphin
-    kdePackages.ffmpegthumbs
-    kdePackages.kio-extras
     fzf
-    ffmpeg
     mediainfo
     lsd
     rclone
     rsync
-    rclone-browser
     btop-rocm
-    bulky
-    cliphist
     fastfetch
-    fladder
     glow
-    hyprshot
     jq
+    ouch-rar
+    restic
+    ripgrep
+    protonup-rs
+    gum
+    mkvtoolnix-cli
+    wget
+    miktex
+    hyprshot
+
+    # GUI
+    kdePackages.dolphin
+    rclone-browser
+    bulky
+    fladder
     losslesscut
     mpv
     nomacs
-    ntfs3g
     obsidian
-    ouch-rar
     qbittorrent
-    restic
-    ripgrep
     libreoffice-fresh
-    wl-clipboard
     lutris
-    protonup-rs
     noctalia-shell
-    gum
-    mangohud
-    aria2
     pass
+    proton-vpn
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    gnome-disk-utility
+
+    # LIB
+    kdePackages.ffmpegthumbs
+    kdePackages.kio-extras
+    ffmpeg
+    cliphist
+    tesseract
     mesa
     vulkan-loader
     libGL
     libGLU
-    mkvtoolnix-cli
-    wget
-    proton-vpn
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    tesseract
-    miktex
-    texlab
-    gnome-disk-utility
+    wl-clipboard
+    ntfs3g
+    mangohud
   ];
 }

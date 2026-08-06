@@ -25,6 +25,7 @@
     typstyle
     nixd
     vtsls
+    texlab
 
     pnpm
     uv

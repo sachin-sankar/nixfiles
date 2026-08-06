@@ -2,24 +2,14 @@
 
 {
   imports = [
-    ./flakes/dev/git.nix
+    ./flakes/git.nix
   ];
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "sachin";
   home.homeDirectory = "/home/sachin";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with.
   home.stateVersion = "26.05";
 
-  # The home.packages option allows you to install Nix packages into your environment.
-  home.packages = [
-    # Git packages have been moved to git.nix
-  ];
-
-  # Home Manager is pretty good at managing dotfiles.
   home.file = {
     ".config/mpv" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/mpv";
@@ -65,15 +55,7 @@
     };
 
   };
-
-  # Home Manager can also manage your environment variables.
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
   home.shell.enableZshIntegration = true;
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
