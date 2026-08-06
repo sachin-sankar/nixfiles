@@ -1,5 +1,4 @@
 { ... }: {
-  virtualisation.docker.enable = true;
   services = {
     displayManager.ly.enable = true;
     tuned.enable = true;
@@ -52,8 +51,7 @@
     };
   };
 
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
+  home-manager.users.sachin.services = {
+    gnome-keyring.enable = true;
   };
 }

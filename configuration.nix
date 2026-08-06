@@ -16,26 +16,31 @@
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
-
     systemd-boot = {
       enable = true;
       editor = false;
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+    firewall.enable = false;
+  };
+
+  virtualisation.docker.enable = true;
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
 
   zramSwap = {
     enable = true;
   };
 
   time.timeZone = "Asia/Kolkata";
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+
   nix = {
     optimise.automatic = true;
     gc = {
@@ -43,6 +48,10 @@
       dates = [ "daily" ];
       options = "--delete-older-than 2d";
     };
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   i18n = {
@@ -70,7 +79,6 @@
       "docker"
     ];
   };
-
   users.defaultUserShell = pkgs.zsh;
 
   nixpkgs.config.allowUnfree = true;
