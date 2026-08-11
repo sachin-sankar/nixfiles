@@ -7,17 +7,18 @@ enable_overdrive = true
 order = [ "default" ]
 
     [bar.default]
-    background_opacity = 0.0
+    background_opacity = 1.0
     center = [ "workspaces" ]
     concave_edge_corners = false
     contact_shadow = true
     end = [ "tray", "ram", "network_rx", "notifications", "network", "bluetooth", "volume", "brightness", "battery" ]
     margin_ends = 0
-    padding = 8
+    padding = 7
+    panel_overlap = 0
     radius = 0
     shadow = false
     start = [ "custom_button_2", "clock", "media" ]
-    thickness = 28
+    thickness = 30
     widget_spacing = 11
 
 [control_center]
@@ -38,9 +39,6 @@ sidebar_section = "none"
 
 [desktop_widgets]
 enabled = false
-
-[hooks]
-started = "/home/sachin/scripts/wall"
 
 [location]
 latitude = 79.164691000000005
@@ -79,6 +77,9 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 [notification]
 position = "top_center"
 
+[osd.kinds]
+media = false
+
 [plugin_settings."icefish/phone-connect"]
 state_update_interval = 8
 
@@ -89,6 +90,7 @@ enabled = []
 avatar_path = "/home/sachin/Pictures/profile.jpeg"
 external_ip_enabled = true
 font_family = "JetBrainsMono Nerd Font"
+panel_anchor_bar = "default"
 polkit_agent = true
 settings_show_advanced = true
 
@@ -97,6 +99,7 @@ settings_show_advanced = true
 
     [shell.panel]
     clipboard_position = "bottom_center"
+    floating_offset = 0
     launcher_position = "bottom_center"
     open_near_click_control_center = true
 
@@ -136,7 +139,6 @@ format = "{:%H:%M %d-%m-%Y}"
 
 [widget.custom_button_2]
 custom_image = "/home/sachin/Downloads/nixos.svg"
-scale = 1.25
 type = "custom_button"
 
 [widget.media]
