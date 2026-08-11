@@ -10,6 +10,7 @@ order = [ "default" ]
     background_opacity = 0.0
     center = [ "workspaces" ]
     concave_edge_corners = false
+    contact_shadow = true
     end = [ "tray", "ram", "network_rx", "notifications", "network", "bluetooth", "volume", "brightness", "battery" ]
     margin_ends = 0
     padding = 8
@@ -19,20 +20,31 @@ order = [ "default" ]
     thickness = 28
     widget_spacing = 11
 
-[[control_center.shortcuts]]
-type = "wifi"
+[control_center]
+sidebar = "none"
+sidebar_section = "none"
 
-[[control_center.shortcuts]]
-type = "bluetooth"
+    [[control_center.shortcuts]]
+    type = "wifi"
 
-[[control_center.shortcuts]]
-type = "power_profile"
+    [[control_center.shortcuts]]
+    type = "bluetooth"
 
-[[control_center.shortcuts]]
-type = "wallpaper"
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "wallpaper"
 
 [desktop_widgets]
 enabled = false
+
+[hooks]
+started = "/home/sachin/scripts/wall"
+
+[location]
+latitude = 79.164691000000005
+longitude = 12.972618000000001
 
 [lockscreen]
 enabled = false
@@ -66,6 +78,12 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
 [notification]
 position = "top_center"
+
+[plugin_settings."icefish/phone-connect"]
+state_update_interval = 8
+
+[plugins]
+enabled = []
 
 [shell]
 avatar_path = "/home/sachin/Pictures/profile.jpeg"
@@ -110,6 +128,9 @@ transition_duration = 400
     [wallpaper.monitors.eDP-1]
     path = "/home/sachin/Pictures/Wallpapers/full.png"
 
+[weather]
+refresh_minutes = 5
+
 [widget.clock]
 format = "{:%H:%M %d-%m-%Y}"
 
@@ -120,6 +141,10 @@ type = "custom_button"
 
 [widget.media]
 hide_when_no_media = true
+
+[widget.network]
+show_label = false
+show_vpn_label = true
 
 [widget.network_rx]
 label_min_width = 16
