@@ -30,9 +30,8 @@
         source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/ly";
         recursive = true;
       };
-      ".config/noctalia" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/noctalia/";
-        recursive = true;
+      ".local/state/noctalia/settings.toml" = {
+        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/noctalia/settings.toml";
       };
       ".config/nvim" = {
         source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/nvim";
