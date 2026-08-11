@@ -20,7 +20,6 @@
     mkvtoolnix-cli
     wget
     miktex
-    hyprshot
 
     # GUI
     kdePackages.dolphin
@@ -34,11 +33,12 @@
     qbittorrent
     libreoffice-fresh
     lutris
-    noctalia-shell
+    noctalia
     pass
     proton-vpn
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     gnome-disk-utility
+    chromium
 
     # LIB
     kdePackages.ffmpegthumbs

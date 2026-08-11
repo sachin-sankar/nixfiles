@@ -48,7 +48,7 @@ tt() {
 alias ls='lsd -a'
 alias l='ls'
 alias yd='yt-dlp --sponsorblock-remove sponsor -f "bestvideo[height<=1440]+bestaudio/best[height<=1440]" --embed-chapters'
-alias ydc='yt-dlp -f "bv*+ba/b" --cookies-from-browser firefox:~/.zen'
+alias ydc='yt-dlp -f "bv*+ba/b" --cookies-from-browser firefox:~/.config/zen/'
 alias markalldown='find . -maxdepth 1 -type f -exec bash -c '\''markitdown "$1" -o "${1%.*}.md"'\'' _ {} \;'
 alias n='nvim'
 alias pdf='zathura --fork'

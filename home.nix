@@ -56,6 +56,10 @@
         source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/scripts";
         recursive = true;
       };
+      "Pictures/Wallpapers" = {
+        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/wallpapers";
+        recursive = true;
+      };
     };
   };
 }

@@ -18,7 +18,8 @@ hl.monitor({
 hl.on("hyprland.start", function()
 	hl.exec_cmd("wl-paste --watch cliphist store")
 	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-	hl.exec_cmd("noctalia-shell")
+	hl.exec_cmd("noctalia")
+	hl.exec_cmd("wall")
 end)
 
 -----------------------
@@ -192,12 +193,12 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + K", hl.dsp.window.close())
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("dolphin"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("zen"))
 hl.bind(mainMod .. " + P", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("noctalia-shell ipc call launcher clipboard"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian %U"))
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("noctalia-shell ipc call sessionMenu toggle"))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 hl.bind(mainMod .. " + X", hl.dsp.dpms("toggle"))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("lutris"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("kitty -e yazi"))
@@ -213,7 +214,7 @@ hl.define_submap("swap_window", function()
 	hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
 hl.bind(mainMod .. " + U", hl.dsp.window.fullscreen())
 
 -- Move focus with mainMod + arrow keys
@@ -263,16 +264,8 @@ hl.bind(
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("noctalia-shell ipc call brightness increase"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"),
-	{ locked = true, repeating = true }
-)
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })

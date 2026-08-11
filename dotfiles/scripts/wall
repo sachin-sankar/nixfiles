@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+EMPTY_WALLPAPER="/home/sachin/Pictures/Wallpapers/empty.png"
+FULL_WALLPAPER="/home/sachin/Pictures/Wallpapers/full.png"
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+CURRENT_STATE=""
+
+update_wallpaper() {
+  local windows
+  windows=$(hyprctl activeworkspace -j | jq '.windows')
+
+  if [ "$windows" -eq 0 ]; then
+    if [ "$CURRENT_STATE" != "empty" ]; then
+      noctalia msg wallpaper-set "$EMPTY_WALLPAPER"
+      CURRENT_STATE="empty"
+    fi
+  else
+    if [ "$CURRENT_STATE" != "full" ]; then
+      noctalia msg wallpaper-set "$FULL_WALLPAPER"
+      CURRENT_STATE="full"
+    fi
+  fi
+}
+
+# Set initial state on launch
+update_wallpaper
+
+# Listen via Netcat instead of socat
+nc -U "$SOCKET" | while read -r line; do
+  case "$line" in
+  workspace* | openwindow* | closewindow* | movewindow*)
+    update_wallpaper
+    ;;
+  esac
+done
