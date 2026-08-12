@@ -22,25 +22,15 @@ order = [ "default" ]
     widget_spacing = 11
 
 [control_center]
+shortcuts = []
 sidebar = "none"
 sidebar_section = "none"
-
-    [[control_center.shortcuts]]
-    type = "wifi"
-
-    [[control_center.shortcuts]]
-    type = "bluetooth"
-
-    [[control_center.shortcuts]]
-    type = "power_profile"
-
-    [[control_center.shortcuts]]
-    type = "wallpaper"
 
 [desktop_widgets]
 enabled = false
 
 [location]
+address = "Katpadi, India"
 latitude = 79.164691000000005
 longitude = 12.972618000000001
 
@@ -79,9 +69,6 @@ position = "top_center"
 
 [osd.kinds]
 media = false
-
-[plugin_settings."icefish/phone-connect"]
-state_update_interval = 8
 
 [plugins]
 enabled = []
@@ -123,13 +110,13 @@ transition = [ "fade" ]
 transition_duration = 400
 
     [wallpaper.default]
-    path = "/home/sachin/Pictures/Wallpapers/full.png"
+    path = "/home/sachin/Pictures/Wallpapers/empty.png"
 
     [wallpaper.last]
-    path = "/home/sachin/Pictures/Wallpapers/full.png"
+    path = "/home/sachin/Pictures/Wallpapers/empty.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/sachin/Pictures/Wallpapers/full.png"
+    path = "/home/sachin/Pictures/Wallpapers/empty.png"
 
 [weather]
 refresh_minutes = 5
@@ -138,11 +125,14 @@ refresh_minutes = 5
 format = "{:%H:%M %d-%m-%Y}"
 
 [widget.custom_button_2]
-custom_image = "/home/sachin/Downloads/nixos.svg"
+custom_image = "/home/sachin/Pictures/Wallpapers/nixos.svg"
 type = "custom_button"
 
 [widget.media]
+artist_first = true
 hide_when_no_media = true
+max_length = 158
+title_scroll = "always"
 
 [widget.network]
 show_label = false
@@ -151,10 +141,16 @@ show_vpn_label = true
 [widget.network_rx]
 label_min_width = 16
 network_speed_compact = true
-network_speed_unit = "kb"
+network_speed_unit = "mb"
 
 [widget.notifications]
 hide_when_no_unread = true
+
+[widget.ram]
+stat = "ram_pct"
+
+    [widget.ram.actions]
+    right = "exec btop"
 
 [widget.workspaces]
 active_pill_size = 2.7000000000000002
