@@ -20,6 +20,10 @@
     mkvtoolnix-cli
     wget
     miktex
+    skills
+    markitdown
+    gallery-dl
+    yt-dlp
 
     # GUI
     kdePackages.dolphin

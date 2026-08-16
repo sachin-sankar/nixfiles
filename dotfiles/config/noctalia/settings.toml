@@ -1,4 +1,4 @@
-config_version = 8
+config_version = 12
 
 [audio]
 enable_overdrive = true
@@ -25,6 +25,9 @@ order = [ "default" ]
 shortcuts = []
 sidebar = "none"
 sidebar_section = "none"
+
+    [control_center.calendar]
+    show_events_card = false
 
 [desktop_widgets]
 enabled = false
@@ -127,6 +130,9 @@ format = "{:%H:%M %d-%m-%Y}"
 [widget.custom_button_2]
 custom_image = "/home/sachin/Pictures/Wallpapers/nixos.svg"
 type = "custom_button"
+
+    [widget.custom_button_2.actions]
+    left = "panel-open control-center"
 
 [widget.media]
 artist_first = true
