@@ -33,8 +33,6 @@
     docker-buildx
     docker-compose
     just
-    opencode
     github-cli
-    pi-coding-agent
   ];
 }

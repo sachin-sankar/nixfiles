@@ -77,6 +77,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "gamemode"
     ];
   };
   users.defaultUserShell = pkgs.zsh;
