@@ -78,6 +78,8 @@
       "wheel"
       "docker"
       "gamemode"
+      "uucp"
+      "dialout"
     ];
   };
   users.defaultUserShell = pkgs.zsh;
