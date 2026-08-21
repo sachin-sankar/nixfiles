@@ -30,6 +30,12 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      extraConfig.pipewire."99-clock-rate" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.allowed-rates" = [ 48000 ];
+        };
+      };
     };
 
     ollama = {

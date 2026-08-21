@@ -26,6 +26,9 @@
     "amdgpu"
   ];
   boot.extraModulePackages = [ ];
+  boot.extraModprobeConfig = ''
+    options snd-hda-intel model=hp-smart-amp
+  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/b794de9a-bb28-4cc4-9896-4a86a8298722";
