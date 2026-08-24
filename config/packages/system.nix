@@ -43,7 +43,6 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     gnome-disk-utility
     chromium
-    arduino
 
     # LIB
     kdePackages.ffmpegthumbs

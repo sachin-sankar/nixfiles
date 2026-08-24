@@ -38,11 +38,6 @@
       };
     };
 
-    ollama = {
-      enable = true;
-      host = "0.0.0.0";
-    };
-
     syncthing = {
       enable = true;
       systemService = true;
