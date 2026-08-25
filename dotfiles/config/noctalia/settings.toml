@@ -112,7 +112,6 @@ network_poll_seconds = 1
 [theme]
 builtin = "Noctalia"
 community_palette = "Lilac AMOLED"
-mode = "dark"
 pure_black_dark = true
 source = "community"
 
