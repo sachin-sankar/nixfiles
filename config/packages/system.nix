@@ -35,7 +35,7 @@
     nomacs
     obsidian
     qbittorrent
-    libreoffice-fresh
+    libreoffice-stable
     lutris
     noctalia
     pass
