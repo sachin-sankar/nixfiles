@@ -45,6 +45,9 @@ tt() {
     fi
 }
 
+HISTSIZE=0
+SAVEHIST=0
+
 alias ls='lsd -a'
 alias l='ls'
 alias yd='yt-dlp --sponsorblock-remove sponsor -f "bestvideo[height<=1440]+bestaudio/best[height<=1440]" --embed-chapters'
