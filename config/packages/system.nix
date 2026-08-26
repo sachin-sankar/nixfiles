@@ -57,5 +57,6 @@
     wl-clipboard
     ntfs3g
     mangohud
+    nodejs
   ];
 }
