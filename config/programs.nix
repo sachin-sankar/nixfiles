@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   programs = {
     nix-ld.enable = true;
-    npm.enable = true;
     zoxide.enable = true;
     lazygit.enable = true;
     bat.enable = true;
