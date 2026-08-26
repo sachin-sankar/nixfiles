@@ -28,6 +28,7 @@
     texlab
 
     pnpm
+    bun
     uv
     docker
     docker-buildx
