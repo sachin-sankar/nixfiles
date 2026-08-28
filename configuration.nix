@@ -42,12 +42,6 @@
   time.timeZone = "Asia/Kolkata";
 
   nix = {
-    optimise.automatic = true;
-    gc = {
-      automatic = true;
-      dates = [ "daily" ];
-      options = "--delete-older-than 2d";
-    };
     settings.experimental-features = [
       "nix-command"
       "flakes"
