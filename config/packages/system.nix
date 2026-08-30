@@ -26,7 +26,6 @@
     yt-dlp
 
     # GUI
-    kdePackages.dolphin
     rclone-browser
     bulky
     fladder

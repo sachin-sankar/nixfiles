@@ -190,7 +190,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + K", hl.dsp.window.close())
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("uwsm stop"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("dolphin"))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("kitty -e yazi"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("zen"))
 hl.bind(mainMod .. " + P", hl.dsp.window.float({ action = "toggle" }))
