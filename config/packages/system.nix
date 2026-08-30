@@ -35,7 +35,6 @@
     nomacs
     obsidian
     qbittorrent
-    libreoffice-stable
     lutris
     noctalia
     pass
@@ -45,18 +44,13 @@
     chromium
 
     # LIB
-    kdePackages.ffmpegthumbs
-    kdePackages.kio-extras
     ffmpeg
     cliphist
-    tesseract
     mesa
     vulkan-loader
     libGL
     libGLU
     wl-clipboard
     ntfs3g
-    mangohud
-    nodejs
   ];
 }
