@@ -24,7 +24,6 @@
     markitdown
     gallery-dl
     yt-dlp
-    simple-mtpfs
 
     # GUI
     rclone-browser
@@ -42,8 +41,11 @@
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     gnome-disk-utility
     chromium
+    kdePackages.dolphin
 
     # LIB
+    kdePackages.ffmpegthumbs
+    kdePackages.kio-extras
     ffmpeg
     cliphist
     mesa

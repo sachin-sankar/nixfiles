@@ -5,6 +5,7 @@
     upower.enable = true;
     udisks2.enable = true;
     playerctld.enable = true;
+    gvfs.enable = true;
 
     logind = {
       enable = true;
