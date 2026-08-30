@@ -51,6 +51,18 @@
           show_hidden = true;
         };
       };
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = [
+              "g"
+              "m"
+            ];
+            run = "cd /run/media/sachin";
+            desc = "Go to Media Drives";
+          }
+        ];
+      };
     };
   };
 }

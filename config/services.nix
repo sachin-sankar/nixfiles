@@ -54,5 +54,6 @@
 
   home-manager.users.sachin.services = {
     gnome-keyring.enable = true;
+    udiskie.enable = true;
   };
 }
