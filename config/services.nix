@@ -4,7 +4,6 @@
     tuned.enable = true;
     upower.enable = true;
     udisks2.enable = true;
-    gvfs.enable = true;
     playerctld.enable = true;
 
     logind = {

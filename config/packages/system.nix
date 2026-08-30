@@ -24,6 +24,7 @@
     markitdown
     gallery-dl
     yt-dlp
+    simple-mtpfs
 
     # GUI
     rclone-browser
