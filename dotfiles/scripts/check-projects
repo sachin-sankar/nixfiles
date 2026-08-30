@@ -1,43 +1,81 @@
-PROJECTS_DIR="$HOME/Projects"
+#!/usr/bin/env bash
 
-# Check if the directory exists
-if [[ ! -d "$PROJECTS_DIR" ]]; then
-  echo "Error: $PROJECTS_DIR does not exist."
+# Define target directories to check
+TARGET_DIRS=(
+  "$HOME/Projects"
+  "$HOME/Deck"
+)
+
+# Verify gum installation
+if ! command -v gum &> /dev/null; then
+  echo "Error: 'gum' is not installed."
   exit 1
 fi
 
-# Loop through every item in the Projects folder
-for dir in "$PROJECTS_DIR"/*/; do
-  # Remove trailing slash for cleaner printing
-  dir=${dir%*/}
-  project_name=$(basename "$dir")
+check_git_dir() {
+  local target_dir="$1"
 
-  echo -e "\n\033[1;34m--- Checking: $project_name ---\033[0m"
-
-  if [ -d "$dir/.git" ]; then
-    # It is a git repo
-    cd "$dir" || continue
-
-    # 1. Run git status (short version for readability)
-    echo "[Status]:"
-    git status -s
-
-    # Check if status was empty (meaning it's clean)
-    if [ $? -eq 0 ] && [ -z "$(git status --porcelain)" ]; then
-      echo "Working directory clean."
-    fi
-
-    # 2. Check for remote origin
-    remote=$(git remote get-url origin 2>/dev/null)
-    if [ -n "$remote" ]; then
-      echo -e "[Remote]: $remote"
-    else
-      echo -e "[Remote]: \033[0;33mNo remote origin found.\033[0m"
-    fi
-  else
-    # Not a git repo
-    echo -e "\033[0;31mNo git repo initialized.\033[0m"
+  if [[ ! -d "$target_dir" ]]; then
+    gum style --foreground 208 -- "󰀦 Directory '$target_dir' does not exist. Skipping."
+    return
   fi
-done
 
-echo -e "\n\033[1;32mDone.\033[0m"
+  for dir in "$target_dir"/*/; do
+    [[ -e "$dir" ]] || continue
+
+    dir=${dir%*/}
+    project_name=$(basename "$dir")
+    
+    parent_dir=$(basename "$target_dir")
+    display_path="$parent_dir/$project_name"
+
+    echo ""
+    gum style --bold --foreground 39 -- "󰉋 $display_path"
+
+    if [[ -d "$dir/.git" ]]; then
+      cd "$dir" || continue
+
+      status_output=$(git status -s)
+
+      if [[ -z "$status_output" ]]; then
+        gum style --foreground 82 -- "   Clean"
+      else
+        # Calculate additions and deletions across staged & unstaged tracked files
+        diff_stats=$(git diff HEAD --numstat 2>/dev/null)
+        
+        insertions=$(echo "$diff_stats" | awk '{s+=$1} END {print s+0}')
+        deletions=$(echo "$diff_stats" | awk '{s+=$2} END {print s+0}')
+
+        # Count untracked files
+        untracked_count=$(git ls-files --others --exclude-standard | wc -l | xargs)
+
+        # Build styled components using -- to prevent negative numbers from parsing as flags
+        add_str=$(gum style --foreground 82 -- "+$insertions")
+        del_str=$(gum style --foreground 196 -- "-$deletions")
+        
+        summary_str="  󰅚 Uncommitted Changes: ${add_str}/${del_str}"
+
+        if [[ "$untracked_count" -gt 0 ]]; then
+          untracked_str=$(gum style --foreground 214 -- "($untracked_count untracked)")
+          summary_str+=" ${untracked_str}"
+        fi
+
+        echo -e "$summary_str"
+      fi
+
+      # Git Remote check
+      remote=$(git remote get-url origin 2>/dev/null)
+      if [[ -n "$remote" ]]; then
+        gum style --foreground 245 -- "  󰊢 Remote: $remote"
+      else
+        gum style --foreground 208 -- "  󰞋 No remote origin configured"
+      fi
+    else
+      gum style --foreground 240 -- "  󰅙 Not a git repository"
+    fi
+  done
+}
+
+for target in "${TARGET_DIRS[@]}"; do
+  check_git_dir "$target"
+done
