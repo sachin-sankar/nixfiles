@@ -57,6 +57,7 @@ alias n='nvim'
 alias pdf='zathura --fork'
 alias y='yazi'
 alias dnd='kitten dnd'
+alias backup='restic -r /run/media/sachin/Transcend/sachin-restic-archlinux backup --files-from .resticinclude --exclude-file .resticignore'
 
 
 export PATH="$HOME/go/bin:$PATH"
