@@ -45,8 +45,8 @@ tt() {
     fi
 }
 
-HISTSIZE=0
-SAVEHIST=0
+unset HISTFILE
+HISTSIZE=1000
 
 alias ls='lsd -a'
 alias l='ls'
