@@ -54,5 +54,6 @@
     libGLU
     wl-clipboard
     ntfs3g
+    nodejs-slim
   ];
 }
