@@ -24,6 +24,7 @@
     markitdown
     gallery-dl
     yt-dlp
+    plantuml
 
     # GUI
     rclone-browser
