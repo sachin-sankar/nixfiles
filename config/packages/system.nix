@@ -25,6 +25,7 @@
     gallery-dl
     yt-dlp
     plantuml
+    devenv
 
     # GUI
     rclone-browser
