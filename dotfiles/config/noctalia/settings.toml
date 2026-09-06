@@ -1,4 +1,4 @@
-config_version = 13
+config_version = 14
 
 [audio]
 enable_overdrive = true
@@ -20,6 +20,8 @@ order = [ "default" ]
     start = [ "custom_button_2", "clock", "media" ]
     thickness = 30
     widget_spacing = 11
+
+[calendar]
 
 [control_center]
 shortcuts = []
