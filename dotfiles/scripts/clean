@@ -1,0 +1,3 @@
+nh clean all -k 2 --optimise
+pnpm store prune
+uv cache prune
