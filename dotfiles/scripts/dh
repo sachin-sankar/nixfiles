@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Set Downloads path
+DOWNLOADS_DIR="${HOME}/Downloads"
+TARGET_DIR="$(pwd)"
+
+# Check if Downloads directory exists
+if [[ ! -d "$DOWNLOADS_DIR" ]]; then
+    echo "Error: Directory '$DOWNLOADS_DIR' does not exist." >&2
+    exit 1
+fi
+
+# Recursively find all files (excluding hidden ones) and launch fzf
+# TAB: Select multiple files | CTRL-A: Select all | CTRL-D: Deselect all
+SELECTED_FILES=$(find "$DOWNLOADS_DIR" -type f -not -path '*/.*' \
+    -printf '%P\n' 2>/dev/null | fzf \
+    --multi \
+    --prompt="Select file(s) to move to $(basename "$TARGET_DIR")/: " \
+    --header="[Tab]: Select multiple | [Enter]: Move selected | [Esc]: Cancel" \
+    --height=40% \
+    --reverse)
+
+# Exit if no file was selected
+if [[ -z "$SELECTED_FILES" ]]; then
+    echo "No files selected."
+    exit 0
+fi
+
+# Process each selected file safely
+MOVED_COUNT=0
+while IFS= read -r FILE; do
+    SRC="${DOWNLOADS_DIR}/${FILE}"
+    # Extracts only the filename to prevent duplicating subfolder trees in target
+    DEST_NAME=$(basename "$FILE")
+    DEST="${TARGET_DIR}/${DEST_NAME}"
+    
+    if [[ -f "$SRC" ]]; then
+        mv -i "$SRC" "$DEST"
+        ((MOVED_COUNT++))
+    fi
+done <<< "$SELECTED_FILES"
+
+echo "Action complete. Moved ${MOVED_COUNT} item(s) to ${TARGET_DIR}."
