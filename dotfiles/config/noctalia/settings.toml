@@ -106,6 +106,7 @@ settings_show_advanced = true
     open_near_click_control_center = true
 
     [shell.screenshot]
+    annotate = true
     directory = "/home/sachin/Pictures/Screenshots"
 
 [system.monitor]
