@@ -1,6 +1,6 @@
 return {
 	python = { "ruff" },
 	dockerfile = { "hadolint" },
-	typescript = { "oxlint" },
+	typescript = { "biome" },
 	yaml = { "yamllint" },
 }

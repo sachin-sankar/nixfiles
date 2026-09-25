@@ -6,8 +6,6 @@
 
     ty
     ruff
-    oxfmt
-    oxlint
     templ
     gopls
     nixfmt

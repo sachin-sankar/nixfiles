@@ -4,8 +4,9 @@ return {
 	go = { "goimports", "gofumpt" },
 	sh = { "shfmt" },
 	typst = { "typstyle", opts = { lsp_format = "prefer" } },
-	typescript = { "oxfmt" },
-	typescriptreact = { "oxfmt" },
-	yaml = { "oxfmt" },
+	typescript = { "biome" },
+	typescriptreact = { "biome" },
+	javascript = { "biome" },
+	yaml = { "biome" },
 	nix = { "nixfmt" },
 }
