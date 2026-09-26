@@ -11,7 +11,6 @@
     ./config/packages/devtools.nix
     ./config/services.nix
     ./config/programs.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   boot.loader = {

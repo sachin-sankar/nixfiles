@@ -115,7 +115,7 @@ return {
 				},
 				options = {
 					nixos = {
-						expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.sachin.options',
+						expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
 					},
 				},
 			},

@@ -15,48 +15,48 @@
 
     file = {
       ".config/mpv" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/mpv";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/mpv";
         recursive = true;
       };
       ".config/hypr" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/hypr";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/hypr";
         recursive = true;
       };
       ".config/kitty" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/kitty";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/kitty";
         recursive = true;
       };
       ".config/ly" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/ly";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/ly";
         recursive = true;
       };
       ".local/state/noctalia/settings.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/noctalia/settings.toml";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/noctalia/settings.toml";
       };
       ".config/nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/nvim";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/nvim";
         recursive = true;
       };
       ".config/rclone" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/rclone";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/rclone";
         recursive = true;
       };
       ".config/uwsm" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/uwsm";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/uwsm";
         recursive = true;
       };
       ".config/starship.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/config/starship.toml";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/starship.toml";
       };
       ".zshrc" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/.zshrc";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/.zshrc";
       };
       "scripts" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/scripts";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/scripts";
         recursive = true;
       };
       "Pictures/Wallpapers" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/sachin/nixfiles/dotfiles/wallpapers";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/wallpapers";
         recursive = true;
       };
     };
