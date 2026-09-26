@@ -16,21 +16,60 @@ return {
 			},
 		},
 	},
+
 	ty = {},
+
 	ruff = {
 		cmd_env = { RUFF_TRACE = "messages" },
 		init_options = { settings = { logLevel = "error" } },
 	},
-	gopls = {},
+
+	gopls = {
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+					shadow = true,
+					nilness = true,
+					unusedwrite = true,
+				},
+				staticcheck = true,
+				usePlaceholders = true,
+				hints = {
+					assignVariableTypes = true,
+					compositeLiteralFields = true,
+					constantValues = true,
+					parameterNames = true,
+					rangeVariableTypes = true,
+				},
+			},
+		},
+	},
+
 	bashls = {},
+
 	tinymist = {
 		single_file_support = true,
 		settings = { formatterMode = "typstyle" },
 	},
+
 	jsonls = {},
+
 	dockerls = {},
+
 	docker_compose_language_service = {},
-	vtsls = {},
+
+	vtsls = {
+		settings = {
+			typescript = {
+				format = { enable = false },
+			},
+			javascript = {
+				format = { enable = false },
+			},
+		},
+	},
+
 	tailwindcss = {
 		filetypes = {
 			"css",
@@ -54,8 +93,35 @@ return {
 			},
 		},
 	},
-	yamlls = {},
-	nixd = {},
+
+	yamlls = {
+		yaml = {
+			format = {
+				enable = true,
+				singleQuote = false,
+				bracketSpacing = true,
+			},
+			schemaStore = {
+				enable = true,
+			},
+		},
+	},
+
+	nixd = {
+		settings = {
+			nixd = {
+				formatting = {
+					command = { "nixfmt" },
+				},
+				options = {
+					nixos = {
+						expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.sachin.options',
+					},
+				},
+			},
+		},
+	},
+
 	texlab = {
 		settings = {
 			texlab = {
@@ -65,6 +131,7 @@ return {
 			},
 		},
 	},
+
 	biome = {
 		filetypes = {
 			"css",
@@ -73,10 +140,13 @@ return {
 			"html",
 			"handlebars",
 			"twig",
+			"javascript",
+			"typescript",
 			"javascriptreact",
 			"typescriptreact",
 			"svelte",
 			"vue",
+			"astro",
 		},
 	},
 }

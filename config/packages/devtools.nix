@@ -18,6 +18,7 @@
     tinymist
     biome
     yaml-language-server
+    yamllint
     taplo
     shfmt
     typstyle

@@ -7,6 +7,6 @@ return {
 	typescript = { "biome" },
 	typescriptreact = { "biome" },
 	javascript = { "biome" },
-	yaml = { "biome" },
+	astro = { "biome" },
 	nix = { "nixfmt" },
 }

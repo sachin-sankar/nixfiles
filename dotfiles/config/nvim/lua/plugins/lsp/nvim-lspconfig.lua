@@ -1,9 +1,5 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local servers = require("lsp.servers")
