@@ -302,3 +302,9 @@ hl.window_rule({
 
 	no_focus = true,
 })
+
+hl.window_rule({
+	name = "games-tearing",
+	match = { fullscreen = true },
+	immediate = true,
+})

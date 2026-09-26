@@ -1,12 +1,10 @@
 fpath=(~/.zsh/completions $fpath)
-autoload -Uz compinit
-compinit
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(docker docker-compose fzf golang history-substring-search zoxide )
+plugins=(docker docker-compose fzf golang zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,7 +59,6 @@ alias backup='restic -r /run/media/sachin/Transcend/sachin-restic-archlinux back
 
 
 export PATH="$HOME/go/bin:$PATH"
-export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 export PATH="$PATH:$HOME/scripts"
 export PATH="$PATH:$HOME/.local/share/pnpm/bin"
 export PATH="/home/sachin/.local/bin:$PATH"
