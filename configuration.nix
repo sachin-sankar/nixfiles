@@ -30,6 +30,16 @@
   };
 
   virtualisation.docker.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      mesa
+      vulkan-loader
+      libGL
+      libGLU
+    ];
+  };
 
   security = {
     polkit.enable = true;

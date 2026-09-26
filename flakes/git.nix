@@ -8,6 +8,10 @@
   programs.git = {
     enable = true;
     settings = {
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      pull.rebase = true;
+      fetch.prune = true;
       user = {
         name = "Sachin Sankar";
         email = "mail.sachinsankar@gmail.com";

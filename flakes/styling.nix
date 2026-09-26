@@ -14,7 +14,7 @@
     cursorTheme = {
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
-      size = 22;
+      size = 24;
     };
     iconTheme = {
       name = "Adwaita";

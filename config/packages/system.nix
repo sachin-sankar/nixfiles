@@ -50,10 +50,6 @@
     kdePackages.kio-extras
     ffmpeg
     cliphist
-    mesa
-    vulkan-loader
-    libGL
-    libGLU
     wl-clipboard
     ntfs3g
     nodejs-slim
