@@ -5,7 +5,10 @@
     lazygit.enable = true;
     bat.enable = true;
     starship.enable = true;
-    nh.enable = true;
+    nh = {
+      enable = true;
+      flake = "/home/sachin/nixfiles";
+    };
     gamemode.enable = true;
     dconf.enable = true;
     java.enable = true;

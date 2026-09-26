@@ -56,10 +56,14 @@
   time.timeZone = "Asia/Kolkata";
 
   nix = {
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+      warn-dirty = false;
+    };
   };
 
   i18n = {
