@@ -18,6 +18,7 @@
     systemd-boot = {
       enable = true;
       editor = false;
+      configurationLimit = 10;
       netbootxyz.enable = true;
       consoleMode = "max";
     };

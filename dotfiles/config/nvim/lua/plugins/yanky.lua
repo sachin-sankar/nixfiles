@@ -2,7 +2,6 @@ return {
 	"gbprod/yanky.nvim",
 	dependencies = {
 		"folke/snacks.nvim",
-		"kkharji/sqlite.lua",
 	},
 	opts = {
 		ring = {
