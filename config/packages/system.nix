@@ -25,7 +25,8 @@
     gallery-dl
     yt-dlp
     plantuml
-    devenv
+    mat2
+    exiftool
 
     # GUI
     rclone-browser
