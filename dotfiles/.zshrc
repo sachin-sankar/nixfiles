@@ -1,66 +1,43 @@
 fpath=(~/.zsh/completions $fpath)
 
+ZSH_DISABLE_COMPFIX="true"
+
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+COMPLETION_WAITING_DOTS="true"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-COMPLETION_WAITING_DOTS="true"
-
-plugins=(docker docker-compose fzf golang zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
+for integration in ~/.zsh/integrations/*.zsh(N); do
+  source "$integration"
+done
+
+# 7. Fast Automated Starship Initialization
+if [ ! -f ~/.starship_static.zsh ]; then
+  command -v starship &>/dev/null && starship init zsh --print-full-init > ~/.starship_static.zsh
 fi
+[[ -f ~/.starship_static.zsh ]] && source ~/.starship_static.zsh || eval "$(starship init zsh)"
 
-eval "$(starship init zsh)"
-
-# Automatically create or attach to a tmux session based on the current folder
-t() {
-    # Get the name of the current directory (slashes removed)
-    local session_name=$(basename "$PWD" | tr '.' '_')
-    
-    # -A: Attach if exists, create if not
-    # -s: Name the session after the folder
-    # -c: Force new windows to open in this exact path
-    tmux new -A -s "$session_name" -c "$PWD"
-}
-
-# Fuzzy find and attach to any running tmux session
-tt() {
-    local session
-    # 1. List all sessions (just their names)
-    # 2. Pass to fzf with a clean header
-    # 3. Attach to the selected target
-    session=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --reverse --header 'Select Tmux Session to Attach:')
-    
-    # If a session was chosen, attach to it
-    if [[ -n "$session" ]]; then
-        tmux attach -t "$session"
-    else
-        echo "No session selected."
-    fi
-}
-
-unset HISTFILE
-HISTSIZE=1000
-
+# 8. Aliases
 alias ls='lsd -a'
 alias l='ls'
 alias yd='yt-dlp --sponsorblock-remove sponsor -f "bestvideo[height<=1440]+bestaudio/best[height<=1440]" --embed-chapters'
 alias ydc='yt-dlp -f "bv*+ba/b" --cookies-from-browser firefox:~/.config/zen/'
 alias markalldown='find . -maxdepth 1 -type f -exec bash -c '\''markitdown "$1" -o "${1%.*}.md"'\'' _ {} \;'
 alias n='nvim'
-alias pdf='zathura --fork'
 alias y='yazi'
 alias dnd='kitten dnd'
+alias dnds='dnd $(fzf)'
+alias ssh='kitty +kitten ssh'
 alias backup='restic -r /run/media/sachin/Transcend/sachin-restic-archlinux backup --files-from .resticinclude --exclude-file .resticignore'
 
-
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$PATH:$HOME/scripts"
-export PATH="$PATH:$HOME/.local/share/pnpm/bin"
-export PATH="/home/sachin/.local/bin:$PATH"
-
+# 9. Environment Paths & Variables
+export PATH="$HOME/go/bin:$HOME/scripts:$HOME/.local/share/pnpm/bin:$HOME/.local/bin:$PATH"
 export GPG_TTY=$(tty)

@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Directories for static assets
+COMP_DIR="$HOME/.zsh/completions"
+INIT_DIR="$HOME/.zsh/integrations"
+mkdir -p "$COMP_DIR" "$INIT_DIR"
+
+gum log --level info "Generating Static Shell Assets"
+
+# 1. Pure Completions (loaded via fpath, prefixed with _)
+declare -A COMPLETIONS=(
+    ["docker"]="docker completion zsh"
+)
+
+# 2. Integration Scripts (sourced directly in .zshrc)
+declare -A INTEGRATIONS=(
+    ["fzf"]="fzf --zsh"
+    ["zoxide"]="zoxide init zsh"
+)
+
+gum log --level info "Processing completions..."
+for tool in "${!COMPLETIONS[@]}"; do
+    if command -v "$tool" &>/dev/null; then
+        gum log --level info "  -> $tool completion"
+        bash -c "${COMPLETIONS[$tool]} > '$COMP_DIR/_$tool'"
+    else
+        gum log --level debug "Skipping $tool (not installed)"
+    fi
+done
+
+gum log --level info "Processing integrations..."
+for tool in "${!INTEGRATIONS[@]}"; do
+    if command -v "$tool" &>/dev/null; then
+        gum log --level info "  -> $tool integration"
+        bash -c "${INTEGRATIONS[$tool]} > '$INIT_DIR/$tool.zsh'"
+    else
+        gum log --level debug "Skipping $tool (not installed)"
+    fi
+done
+
+gum log --level info "Invalidating Zsh Cache Dump"
+# Force Zsh to rebuild its internal index file on the next launch
+rm -f "$HOME/.zcompdump"
+
+gum log --level info "Done! Run a new terminal window to apply changes."
