@@ -43,7 +43,6 @@
     proton-vpn
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     gnome-disk-utility
-    chromium
     kdePackages.dolphin
 
     # LIB
@@ -53,7 +52,6 @@
     cliphist
     wl-clipboard
     ntfs3g
-    nodejs-slim
     openssl
   ];
 }
