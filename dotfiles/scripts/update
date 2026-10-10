@@ -7,3 +7,4 @@ nvim --headless "+Lazy! update" +qa
 skills update -g
 omp update
 omp plugin upgrade
+update-comps
