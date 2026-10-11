@@ -8,7 +8,7 @@ order = [ "default" ]
 
     [bar.default]
     background_opacity = 1.0
-    center = [ "workspaces" ]
+    center = []
     concave_edge_corners = false
     contact_shadow = true
     end = [ "tray", "ram", "network_rx", "notifications", "network", "bluetooth", "volume", "brightness", "battery" ]
@@ -92,6 +92,7 @@ enabled = []
 avatar_path = "/home/sachin/Pictures/profile.jpeg"
 external_ip_enabled = true
 font_family = "JetBrainsMono Nerd Font"
+niri_overview_type_to_launch_enabled = true
 panel_anchor_bar = "default"
 polkit_agent = true
 settings_show_advanced = true
