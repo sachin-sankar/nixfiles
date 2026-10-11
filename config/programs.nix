@@ -13,9 +13,9 @@
     dconf.enable = true;
     java.enable = true;
 
-    hyprland = {
+    niri = {
       enable = true;
-      withUWSM = true;
+      useNautilus = false;
     };
 
     localsend = {

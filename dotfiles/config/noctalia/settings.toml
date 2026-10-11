@@ -97,6 +97,7 @@ polkit_agent = true
 settings_show_advanced = true
 
     [shell.launcher]
+    app_grid = true
     categories = false
 
     [shell.panel]
@@ -117,6 +118,9 @@ builtin = "Noctalia"
 community_palette = "Lilac AMOLED"
 pure_black_dark = true
 source = "community"
+
+    [theme.templates]
+    builtin_ids = [ "niri" ]
 
 [wallpaper]
 directory = "/home/sachin/Pictures/Wallpapers"

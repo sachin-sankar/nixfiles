@@ -22,6 +22,10 @@
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/hypr";
         recursive = true;
       };
+      ".config/niri" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/niri";
+        recursive = true;
+      };
       ".config/kitty" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixfiles/dotfiles/config/kitty";
         recursive = true;
