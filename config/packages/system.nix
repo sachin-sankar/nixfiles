@@ -53,5 +53,6 @@
     wl-clipboard
     ntfs3g
     openssl
+    protontricks
   ];
 }
