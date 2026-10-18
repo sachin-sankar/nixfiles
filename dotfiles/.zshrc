@@ -37,6 +37,7 @@ alias dnd='kitten dnd'
 alias dnds='dnd $(fzf)'
 alias ssh='kitty +kitten ssh'
 alias backup='restic -r /run/media/sachin/Transcend/sachin-restic-archlinux backup --files-from .resticinclude --exclude-file .resticignore'
+alias zen='zen-beta'
 
 # 9. Environment Paths & Variables
 export PATH="$HOME/go/bin:$HOME/scripts:$HOME/.local/share/pnpm/bin:$HOME/.local/bin:$PATH"

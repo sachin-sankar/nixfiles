@@ -344,7 +344,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
-    Mod+B hotkey-overlay-title="Open Browser" { spawn "zen"; }
+    Mod+B hotkey-overlay-title="Open Browser" { spawn "zen-beta"; }
     Mod+F hotkey-overlay-title="Open File Manager: dolphin" { spawn "dolphin"; }
     Mod+O { spawn-sh "obsidian %U"; }
     Mod+G { spawn "lutris"; }
