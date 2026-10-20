@@ -25,6 +25,7 @@
     nixd
     vtsls
     texlab
+    tex-fmt
 
     pnpm
     bun

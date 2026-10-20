@@ -9,4 +9,6 @@ return {
 	javascript = { "biome" },
 	astro = { "biome" },
 	nix = { "nixfmt" },
+	tex = { "tex-fmt" },
+	latex = { "tex-fmt" },
 }
