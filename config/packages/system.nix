@@ -27,6 +27,7 @@
     plantuml
     mat2
     exiftool
+    aria2
 
     # GUI
     rclone-browser
