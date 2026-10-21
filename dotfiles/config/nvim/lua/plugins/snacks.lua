@@ -95,18 +95,7 @@ return {
 		scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = false },
-		terminal = {
-			win = {
-				keys = {
-					nav_h = { "<C-h>", "<C-w>h", desc = "Go to Left Window", mode = "t" },
-					nav_j = { "<C-j>", "<C-w>j", desc = "Go to Lower Window", mode = "t" },
-					nav_k = { "<C-k>", "<C-w>k", desc = "Go to Upper Window", mode = "t" },
-					nav_l = { "<C-l>", "<C-w>l", desc = "Go to Right Window", mode = "t" },
-					hide_slash = { "<C-/>", "hide", desc = "Hide Terminal", mode = "t" },
-					hide_underscore = { "<c-_>", "hide", desc = "which_key_ignore", mode = "t" },
-				},
-			},
-		},
+		terminal = { enabled = false },
 	},
 	keys = {
 		-- find (fff replacements)
