@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Exit if not in a git repository
+hash=$(git rev-parse --short HEAD 2>/dev/null)
+if [ -z "$hash" ]; then
+    echo "Error: Not a git repository." >&2
+    exit 1
+fi
+
+# Ensure at least one argument is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: stamp <filename.ext> [additional_files...]" >&2
+    exit 1
+fi
+
+# Loop through all provided file arguments
+for file in "$@"; do
+    if [ -f "$file" ]; then
+        # Extract filename and extension
+        ext="${file##*.}"
+        base="${file%.*}"
+        
+        # Handle files without extensions
+        if [ "$base" = "$ext" ]; then
+            new_name="${base}@${hash}"
+        else
+            new_name="${base}@${hash}.${ext}"
+        fi
+
+        # Duplicate the file with the new name
+        cp "$file" "$new_name"
+        echo "Created: $new_name"
+    else
+        echo "Warning: '$file' is not a valid file." >&2
+    fi
+done
+
