@@ -1,4 +1,4 @@
-config_version = 15
+config_version = 16
 
 [audio]
 enable_overdrive = true
@@ -64,7 +64,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -92,6 +92,7 @@ enabled = []
 avatar_path = "/home/sachin/Pictures/profile.jpeg"
 external_ip_enabled = true
 font_family = "JetBrainsMono Nerd Font"
+niri_overview_close_on_launch_enabled = true
 niri_overview_type_to_launch_enabled = true
 panel_anchor_bar = "default"
 polkit_agent = true
@@ -126,7 +127,7 @@ source = "community"
 [wallpaper]
 directory = "/home/sachin/Pictures/Wallpapers"
 edge_smoothness = 0.29999999329447746
-transition = [ "fade" ]
+transition = [ "melt", "pixel", "vortex" ]
 transition_duration = 400
 
     [wallpaper.default]
