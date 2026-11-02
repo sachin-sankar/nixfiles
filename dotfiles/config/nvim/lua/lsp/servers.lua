@@ -132,7 +132,7 @@ return {
 		},
 	},
 
-	biome = {
+	oxlint = {
 		filetypes = {
 			"css",
 			"scss",

@@ -16,7 +16,8 @@
     lua-language-server
     tailwindcss-language-server
     tinymist
-    biome
+    oxlint
+    oxfmt
     yaml-language-server
     yamllint
     taplo
