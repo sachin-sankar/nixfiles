@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Check if a filename was provided as an argument
+if [ -z "$1" ]; then
+    echo "Error: No filename provided." >&2
+    echo "Usage: dnds <filename>" >&2
+    exit 1
+fi
+
+INPUT_FILE="$1"
+
+# Check if the input file exists
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: File '$INPUT_FILE' not found." >&2
+    exit 1
+fi
+
+echo "==> Running 'stamp' on '$INPUT_FILE'..."
+# Capture stamp's output to dynamically retrieve the generated filename
+STAMP_OUTPUT=$(stamp "$INPUT_FILE")
+echo "$STAMP_OUTPUT"
+
+# Extract the filename from the "Created: <filename>" line
+STAMPED_FILE=$(echo "$STAMP_OUTPUT" | grep '^Created:' | sed 's/^Created: //')
+
+if [ -z "$STAMPED_FILE" ] || [ ! -f "$STAMPED_FILE" ]; then
+    echo "Error: Failed to determine the stamped filename." >&2
+    exit 1
+fi
+
+# Ensure cleanup happens even if kitten dnd fails or is interrupted
+trap 'rm -f "$STAMPED_FILE"' EXIT
+
+echo "==> Running 'kitten dnd' on '$STAMPED_FILE'..."
+kitten dnd "$STAMPED_FILE"
+
+echo "==> Cleanup complete."
