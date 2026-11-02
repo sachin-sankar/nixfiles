@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   services = {
     displayManager.ly.enable = true;
     tuned.enable = true;
@@ -6,7 +6,13 @@
     udisks2.enable = true;
     playerctld.enable = true;
     gvfs.enable = true;
-    ollama.enable = true;
+    ollama = {
+      enable = true;
+      environmentVariables = {
+        OLLAMA_ORIGINS = "*";
+      };
+      package = pkgs.ollama-vulkan;
+    };
 
     logind = {
       enable = true;
