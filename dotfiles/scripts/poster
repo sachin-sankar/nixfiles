@@ -1,88 +1,128 @@
 #!/usr/bin/env bash
+# poster — embed a cover image (local file or URL) into an MKV or MP4.
+# Usage: poster <movie.mkv|movie.mp4> <image_path_or_url>
+set -euo pipefail
 
-# Exit immediately if a command fails
-set -e
-
-# 1. Validate that both required arguments are passed
-if [ -z "$1" ] || [ -z "$2" ]; then
-    gum style --foreground 196 --bold "Error: Missing arguments."
-    echo "Usage: $0 <movie_file.mkv> <poster_local_path_OR_url>"
-    exit 1
-fi
-
-VIDEO_FILE="$1"
-INPUT_POSTER="$2"
-IS_URL=false
-
-# 2. Check if the video file exists
-if [ ! -f "$VIDEO_FILE" ]; then
-    gum style --foreground 196 "Error: Video file '$VIDEO_FILE' not found."
-    exit 1
-fi
-
-# 3. Handle URL vs. Local File
-if [[ "$INPUT_POSTER" =~ ^https?:// ]]; then
-    IS_URL=true
-    POSTER_FILE="downloaded_poster_temp"
-    
-    # Download function for the Gum spinner
-    download_poster() {
-        # Using --trust-server-names lets wget save the file with its original extension if possible
-        wget -q --trust-server-names -O "$POSTER_FILE" "$INPUT_POSTER"
-    }
-    export -f download_poster
-    export POSTER_FILE INPUT_POSTER
-    
-    # Run download inside a Gum spinner
-    gum spin --spinner="dot" --title="Downloading image from URL..." -- bash -c download_poster
-else
-    POSTER_FILE="$INPUT_POSTER"
-    # Verify local file exists
-    if [ ! -f "$POSTER_FILE" ]; then
-        gum style --foreground 196 "Error: Local poster file '$POSTER_FILE' not found."
-        exit 1
-    fi
-fi
-
-# 4. Dynamically detect image type from the file extension
-# If it's a downloaded file without an extension, we fallback to jpg
-IMAGE_EXT=$(echo "${POSTER_FILE##*.}" | tr '[:upper:]' '[:lower:]')
-if [ "$IMAGE_EXT" = "$POSTER_FILE" ]; then
-    IMAGE_EXT="jpg"
-fi
-
-MIME_TYPE="image/jpeg"
-if [ "$IMAGE_EXT" = "png" ]; then
-    MIME_TYPE="image/png"
-fi
-
-VIDEO_EXT="${VIDEO_FILE##*.}"
-
-# 5. Define the embedding function for the Gum spinner
-embed_poster() {
-    mkvmerge -o "temp_output.${VIDEO_EXT}" \
-      --no-attachments "$VIDEO_FILE" \
-      --attachment-name "cover.${IMAGE_EXT}" \
-      --attachment-mime-type "$MIME_TYPE" \
-      --attach-file "$POSTER_FILE" &> /dev/null
+need() {
+    for cmd in "$@"; do
+        command -v "$cmd" >/dev/null 2>&1 || {
+            echo "Error: '$cmd' is required but not installed." >&2
+            exit 1
+        }
+    done
 }
 
-# Export variables for the background spinner subshell
-export VIDEO_FILE POSTER_FILE IMAGE_EXT MIME_TYPE VIDEO_EXT
-export -f embed_poster
+# plain echo here, since gum may be the thing that's missing
+need gum curl file
 
-# 6. Run the embedding process inside a clean Gum Spinner
-gum spin --spinner="dot" --title="Embedding cover into $VIDEO_FILE..." -- bash -c embed_poster
+die() {
+    gum style --foreground 196 --bold "Error: $*" >&2
+    exit 1
+}
 
-# 7. Final overwrite and replace
-mv "temp_output.${VIDEO_EXT}" "$VIDEO_FILE"
-
-# 8. Clean up temporary downloaded file if it was a URL
-if [ "$IS_URL" = true ]; then
-    rm -f "$POSTER_FILE"
+# --- 1. arguments ---
+if [ "$#" -ne 2 ]; then
+    gum style --foreground 196 --bold "Error: expected exactly 2 arguments." >&2
+    echo "Usage: $0 <movie.mkv|movie.mp4> <poster_local_path_OR_url>" >&2
+    exit 1
 fi
 
-# 9. Print beautiful Markdown success panel using Gum
-gum format "# Success!
-Embedded artwork ($MIME_TYPE) directly into **$VIDEO_FILE**."
+VIDEO_FILE=$1
+INPUT_POSTER=$2
 
+# --- 2. video file and container type ---
+[ -f "$VIDEO_FILE" ] || die "Video file '$VIDEO_FILE' not found."
+
+VIDEO_EXT=${VIDEO_FILE##*.}
+case "${VIDEO_EXT,,}" in
+    mkv | mka | mk3d) FORMAT=mkv ;;
+    mp4 | m4v)        FORMAT=mp4 ;;
+    *) die "Unsupported container '.$VIDEO_EXT' (supported: mkv, mp4, m4v)." ;;
+esac
+
+if [ "$FORMAT" = mkv ]; then
+    need mkvmerge jq
+else
+    need ffmpeg ffprobe
+fi
+
+# --- temp files, always cleaned up ---
+WORK_DIR=$(mktemp -d)
+OUT_FILE=$(mktemp --suffix=".${VIDEO_EXT}" "$(dirname -- "$VIDEO_FILE")/.poster-XXXXXX")
+cleanup() { rm -rf -- "$WORK_DIR" "$OUT_FILE"; }
+trap cleanup EXIT
+
+# --- 3. poster: URL or local file ---
+if [[ "$INPUT_POSTER" =~ ^https?:// ]]; then
+    POSTER_FILE="$WORK_DIR/poster_download"
+    gum spin --spinner=dot --title="Downloading image from URL..." --show-error -- \
+        curl -fsSL --max-time 60 -o "$POSTER_FILE" "$INPUT_POSTER" \
+        || die "Could not download '$INPUT_POSTER'."
+else
+    POSTER_FILE=$INPUT_POSTER
+    [ -f "$POSTER_FILE" ] || die "Local poster file '$POSTER_FILE' not found."
+fi
+
+# --- 4. detect image type from content, not from the file name ---
+MIME_TYPE=$(file -b --mime-type -- "$POSTER_FILE")
+case "$MIME_TYPE" in
+    image/jpeg) IMAGE_EXT=jpg ;;
+    image/png)  IMAGE_EXT=png ;;
+    *) die "Unsupported image type '$MIME_TYPE' (covers must be JPEG or PNG)." ;;
+esac
+
+# --- 5. build the command for the container type ---
+if [ "$FORMAT" = mkv ]; then
+    # mkvmerge exits 1 on warnings, which is still a success.
+    MAX_OK=1
+    CMD=(mkvmerge -o "$OUT_FILE")
+
+    # Drop only previously embedded covers (keeps fonts and other attachments).
+    OLD_COVERS=$(mkvmerge -J "$VIDEO_FILE" | jq -r '
+        [(.attachments // [])[]
+         | select(.file_name | test("^(small_)?cover(_land)?\\."; "i"))
+         | .id] | join(",")') || die "Could not read '$VIDEO_FILE' with mkvmerge."
+    if [ -n "$OLD_COVERS" ]; then
+        CMD+=(--attachments "!$OLD_COVERS")
+    fi
+
+    CMD+=("$VIDEO_FILE"
+          --attachment-name "cover.${IMAGE_EXT}"
+          --attachment-mime-type "$MIME_TYPE"
+          --attach-file "$POSTER_FILE")
+else
+    # MP4 stores cover art as an extra video stream flagged "attached_pic".
+    MAX_OK=0
+    KEPT_VIDEO=0
+    DROP=()
+    while IFS=, read -r idx is_pic; do
+        if [ "$is_pic" = 1 ]; then
+            DROP+=(-map "-0:$idx")      # old cover: leave it out
+        else
+            KEPT_VIDEO=$((KEPT_VIDEO + 1))
+        fi
+    done < <(ffprobe -v error -select_streams v \
+                -show_entries stream=index:stream_disposition=attached_pic \
+                -of csv=p=0 "$VIDEO_FILE") \
+        || die "Could not read '$VIDEO_FILE' with ffprobe."
+
+    # The new cover becomes video stream number KEPT_VIDEO in the output.
+    CMD=(ffmpeg -nostdin -v error -y -i "$VIDEO_FILE" -i "$POSTER_FILE"
+         -map 0 ${DROP[@]+"${DROP[@]}"} -map 1
+         -c copy "-disposition:v:${KEPT_VIDEO}" attached_pic
+         -f mp4 "$OUT_FILE")
+fi
+
+# --- 6. run it ---
+export MAX_OK
+gum spin --spinner=dot --title="Embedding cover into $VIDEO_FILE..." --show-error -- \
+    bash -c '"$@"; rc=$?; [ "$rc" -le "$MAX_OK" ]' _ "${CMD[@]}" \
+    || die "Embedding failed; '$VIDEO_FILE' was left untouched."
+
+# --- 7. replace the original, keeping its permissions ---
+chmod --reference="$VIDEO_FILE" "$OUT_FILE"
+mv -f -- "$OUT_FILE" "$VIDEO_FILE"
+
+# --- 8. done ---
+gum format -- "# Success!
+Embedded artwork ($MIME_TYPE) directly into **$VIDEO_FILE**."

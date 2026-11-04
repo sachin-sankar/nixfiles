@@ -1,2 +1,38 @@
-url=$(curl -sG "https://imdb.iamidiotareyoutoo.com/search" --data-urlencode "q=$1"  | jq -r '.description.[0]."#IMG_POSTER"')
-poster "$1" $url
+#!/usr/bin/env bash
+# imov — look up a movie's poster on IMDb and embed it into the MKV.
+# Usage: imov <movie.mkv>
+set -euo pipefail
+
+for cmd in curl jq poster; do
+    command -v "$cmd" >/dev/null 2>&1 || {
+        echo "Error: '$cmd' is required but not found in PATH." >&2
+        exit 1
+    }
+done
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <movie_file.mkv>" >&2
+    exit 1
+fi
+
+FILE=$1
+[ -f "$FILE" ] || { echo "Error: '$FILE' not found." >&2; exit 1; }
+
+# Turn "The.Matrix.1999.1080p.BluRay.mkv" into "The Matrix" for the search.
+name=$(basename -- "${FILE%.*}")
+query=$(sed -E 's/[._]+/ /g; s/[[:space:]]*[([]?\b((19|20)[0-9]{2}|[0-9]{3,4}p|4k)\b.*$//I' <<<"$name")
+[ -n "$query" ] || query=${name//[._]/ }
+
+url=$(curl -fsSG "https://imdb.iamidiotareyoutoo.com/search" \
+        --data-urlencode "q=$query" --max-time 30 \
+    | jq -r '.description[0]["#IMG_POSTER"] // empty') || {
+    echo "Error: search request failed." >&2
+    exit 1
+}
+
+if [ -z "$url" ]; then
+    echo "Error: no poster found for '$query'." >&2
+    exit 1
+fi
+
+exec poster "$FILE" "$url"

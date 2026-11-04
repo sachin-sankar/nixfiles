@@ -55,5 +55,6 @@
     ntfs3g
     openssl
     protontricks
+    file
   ];
 }
