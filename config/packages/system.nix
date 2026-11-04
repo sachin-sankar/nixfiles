@@ -56,5 +56,6 @@
     openssl
     protontricks
     file
+    xwayland-satellite
   ];
 }
