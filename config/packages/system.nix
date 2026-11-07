@@ -28,6 +28,7 @@
     mat2
     exiftool
     aria2
+    sshfs
 
     # GUI
     rclone-browser

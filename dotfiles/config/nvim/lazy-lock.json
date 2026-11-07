@@ -34,6 +34,7 @@
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "render-markdown.nvim": { "branch": "main", "commit": "8e8795368391036643b622875a6da6a51bcd33f4" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
+  "sshfs.nvim": { "branch": "main", "commit": "a4c61a8b49639dbd37d0c272e0f93a5ffe85e81d" },
   "themeInitNvim": { "branch": "main", "commit": "b1ac0234ecde7562e98dc7cb2cdd7260b1d3998f" },
   "tiny-devicons-auto-colors.nvim": { "branch": "main", "commit": "3b0c0174f4ed9120b6bea00d77e179ed5c46dcfb" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
