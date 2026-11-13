@@ -33,7 +33,7 @@
     # GUI
     rclone-browser
     bulky
-    fladder
+    jellyfin-mpv-shim
     losslesscut
     mpv
     nomacs
