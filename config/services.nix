@@ -6,6 +6,7 @@
     udisks2.enable = true;
     playerctld.enable = true;
     gvfs.enable = true;
+    bootvine.enable = true;
     ollama = {
       enable = true;
       environmentVariables = {

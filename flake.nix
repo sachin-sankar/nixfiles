@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bootvine = {
+      url = "git+https://codeberg.org/wvhulle/bootvine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dolphin-overlay.url = "github:MattiDragon/dolphin-overlay";
 
   };
@@ -23,6 +28,7 @@
       self,
       nixpkgs,
       dolphin-overlay,
+      bootvine,
       ...
     }@inputs:
     {
@@ -31,6 +37,7 @@
         modules = [
           ./configuration.nix
           inputs.home-manager.nixosModules.default
+          bootvine.nixosModules.default
           { nixpkgs.overlays = [ dolphin-overlay.overlays.default ]; }
         ];
       };
