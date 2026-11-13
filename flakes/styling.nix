@@ -1,20 +1,26 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
 
+let
+  cursorSize = 22;
+  cursorName = "Bibata-Modern-Classic";
+  cursorPackage = pkgs.bibata-cursors;
+in
+{
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;
     hyprcursor.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
+    package = cursorPackage;
+    name = cursorName;
+    size = cursorSize;
   };
 
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
+      name = cursorName;
+      package = cursorPackage;
+      size = cursorSize; # Updated to match your variable!
     };
     iconTheme = {
       name = "Adwaita";
