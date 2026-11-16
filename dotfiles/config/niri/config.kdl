@@ -347,6 +347,7 @@ binds {
     Mod+B hotkey-overlay-title="Open Browser" { spawn "zen-beta"; }
     Mod+F hotkey-overlay-title="Open File Manager: dolphin" { spawn "dolphin"; }
     Mod+O { spawn-sh "obsidian %U"; }
+    Mod+L { spawn-sh "localsend_app"; }
     Mod+G { spawn "lutris"; }
     Mod+Y { spawn "kitty" "-e" "yazi"; }
 
