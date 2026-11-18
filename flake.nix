@@ -34,5 +34,10 @@
           { nixpkgs.overlays = [ dolphin-overlay.overlays.default ]; }
         ];
       };
+      nixosConfigurations.nixlab = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/homelab/configuration.nix
+        ];
+      };
     };
 }
