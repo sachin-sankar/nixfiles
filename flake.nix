@@ -29,7 +29,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./hosts/desktop/configuration.nix
           inputs.home-manager.nixosModules.default
           { nixpkgs.overlays = [ dolphin-overlay.overlays.default ]; }
         ];
