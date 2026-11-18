@@ -10,5 +10,6 @@
     yazi
     lazygit
     jq
+    dix
   ];
 }
