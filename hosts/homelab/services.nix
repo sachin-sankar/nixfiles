@@ -17,5 +17,14 @@
     tailscale.enable = true;
 
     thermald.enable = true;
+
+    syncthing = {
+      enable = true;
+      user = "sachin";
+      group = "users";
+      dataDir = "/home/sachin";
+      configDir = "/home/sachin/.config/syncthing";
+      guiAddress = "0.0.0.0:8384";
+    };
   };
 }
