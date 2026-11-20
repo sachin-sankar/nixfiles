@@ -57,6 +57,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5GbRgWQOo79vZ5FWsSXhUGLHcLxNq8SCQqmlYBcBpO sachin@nixos"
@@ -76,6 +77,8 @@
     enable = true;
     flake = "/home/sachin/nixlab";
   };
+
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "26.05";
 }
