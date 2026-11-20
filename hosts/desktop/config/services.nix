@@ -6,6 +6,8 @@
     udisks2.enable = true;
     playerctld.enable = true;
     gvfs.enable = true;
+    openssh.enable = true;
+
     ollama = {
       enable = true;
       environmentVariables = {
