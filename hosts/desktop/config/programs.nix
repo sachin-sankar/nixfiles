@@ -5,6 +5,7 @@
     lazygit.enable = true;
     bat.enable = true;
     starship.enable = true;
+    steam.enable = true;
     nh = {
       enable = true;
       flake = "/home/sachin/nixfiles";
