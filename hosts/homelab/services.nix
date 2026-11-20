@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   services = {
     openssh = {
       enable = true;
@@ -26,5 +26,12 @@
       configDir = "/home/sachin/.config/syncthing";
       guiAddress = "0.0.0.0:8384";
     };
+
+    qbittorrent = {
+      enable = true;
+      user = "sachin";
+      group = "users";
+    };
   };
+  systemd.services.qbittorrent.serviceConfig.ProtectHome = lib.mkForce false;
 }
