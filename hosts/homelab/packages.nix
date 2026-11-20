@@ -11,5 +11,6 @@
     lazygit
     jq
     dix
+    pnpm
   ];
 }
