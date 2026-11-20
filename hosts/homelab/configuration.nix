@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./units/netwatch-service.nix
+    ./containers.nix
     ./packages.nix
     ./services.nix
   ];
@@ -77,8 +78,6 @@
     enable = true;
     flake = "/home/sachin/nixlab";
   };
-
-  virtualisation.docker.enable = true;
 
   system.stateVersion = "26.05";
 }
