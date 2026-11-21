@@ -32,6 +32,18 @@
       user = "sachin";
       group = "users";
     };
+
+    miniflux = {
+      enable = true;
+      adminCredentialsFile = "/etc/miniflux/admin";
+      config = {
+        LISTEN_ADDR = "0.0.0.0:8081";
+        BASE_URL = "http://100.88.73.86:8081";
+        POLLING_FREQUENCY = 30;
+        BATCH_SIZE = 50;
+      };
+    };
+
   };
   systemd.services.qbittorrent.serviceConfig.ProtectHome = lib.mkForce false;
 }
