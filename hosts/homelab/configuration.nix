@@ -62,6 +62,7 @@
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5GbRgWQOo79vZ5FWsSXhUGLHcLxNq8SCQqmlYBcBpO sachin@nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINLjEIgTqgcC1Gf0Sx02HsrCYo54eb+FGjxtdi1++UoB root@nixos"
     ];
   };
 
@@ -78,6 +79,11 @@
     enable = true;
     flake = "/home/sachin/nixlab";
   };
+
+  nix.settings.trusted-users = [
+    "root"
+    "sachin"
+  ];
 
   system.stateVersion = "26.05";
 }

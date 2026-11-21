@@ -114,5 +114,29 @@
     };
   };
 
+  nix.settings.trusted-users = [
+    "root"
+    "sachin"
+  ];
+
+  nix.distributedBuilds = true;
+  nix.buildMachines = [
+    {
+      hostName = "100.88.73.86";
+      sshUser = "sachin";
+      sshKey = "/root/.ssh/id_ed25519_homelab";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 4;
+      speedFactor = 1;
+      supportedFeatures = [
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+      ];
+    }
+  ];
+  nix.settings.builders-use-substitutes = true;
+
   system.stateVersion = "26.05";
 }
