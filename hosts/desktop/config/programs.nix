@@ -30,12 +30,6 @@
       syntaxHighlighting.enable = true;
     };
 
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
-    };
-
     neovim = {
       enable = true;
       defaultEditor = true;

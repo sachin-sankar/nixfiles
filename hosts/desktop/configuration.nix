@@ -11,6 +11,7 @@
     ./config/packages/devtools.nix
     ./config/services.nix
     ./config/programs.nix
+    ./config/security.nix
   ];
 
   boot.loader = {
@@ -40,11 +41,6 @@
       libGL
       libGLU
     ];
-  };
-
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
   };
 
   zramSwap = {
