@@ -12,5 +12,6 @@
     jq
     dix
     pnpm
+    uv
   ];
 }

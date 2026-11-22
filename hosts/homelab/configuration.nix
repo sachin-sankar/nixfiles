@@ -79,6 +79,7 @@
     enable = true;
     flake = "/home/sachin/nixlab";
   };
+  programs.nix-ld.enable = true;
 
   nix.settings.trusted-users = [
     "root"
