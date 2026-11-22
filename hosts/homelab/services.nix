@@ -15,6 +15,7 @@
     };
 
     tailscale.enable = true;
+    bootvine.enable = true;
 
     thermald.enable = true;
 

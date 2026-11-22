@@ -7,6 +7,7 @@
     playerctld.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
+    bootvine.enable = true;
 
     ollama = {
       enable = true;
