@@ -45,6 +45,12 @@
       };
     };
 
+    hermes-agent = {
+      enable = true;
+      environmentFiles = [ "/var/lib/hermes/env" ];
+      addToSystemPackages = true;
+    };
+
   };
   systemd.services.qbittorrent.serviceConfig.ProtectHome = lib.mkForce false;
 }
