@@ -9,6 +9,7 @@
     ./containers.nix
     ./packages.nix
     ./services.nix
+    ./gaming.nix
   ];
 
   # ------------------------------------------------------------- network

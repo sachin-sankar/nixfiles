@@ -13,5 +13,6 @@
     dix
     pnpm
     uv
+    ntfs3g
   ];
 }
