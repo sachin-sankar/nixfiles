@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ pkgs, lib, ... }: {
   services = {
     openssh = {
       enable = true;
@@ -49,6 +49,18 @@
       enable = true;
       environmentFiles = [ "/var/lib/hermes/env" ];
       addToSystemPackages = true;
+    };
+
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+      host = "0.0.0.0";
+      port = 11434;
+      openFirewall = true;
+      environmentVariables = {
+        OLLAMA_ORIGINS = "*";
+        OLLAMA_FLASH_ATTENTION = "1";
+      };
     };
 
   };

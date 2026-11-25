@@ -69,7 +69,7 @@
     modesetting.enable = true;
     nvidiaPersistenced = true;
     powerManagement.enable = false;
-    nvidiaSettings = false; # GUI tool, not needed on a server
+    nvidiaSettings = true; # GUI tool, not needed on a server
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 }
