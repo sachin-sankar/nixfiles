@@ -3,6 +3,7 @@
     go
     gcc
     typst
+    rustc
 
     ty
     ruff
