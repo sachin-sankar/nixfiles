@@ -41,5 +41,6 @@
     cargo
     commitizen
     nixpkgs-track
+    prek
   ];
 }
