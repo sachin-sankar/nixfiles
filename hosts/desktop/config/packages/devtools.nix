@@ -27,6 +27,7 @@
     vtsls
     texlab
     tex-fmt
+    rust-analyzer
 
     pnpm
     bun
@@ -36,5 +37,8 @@
     docker-compose
     just
     github-cli
+    cargo
+    commitizen
+    nixpkgs-track
   ];
 }
