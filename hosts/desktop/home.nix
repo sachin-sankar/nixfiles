@@ -53,6 +53,10 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/uwsm";
         recursive = true;
       };
+      ".config/lazygit" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/lazygit";
+        recursive = true;
+      };
       ".config/starship.toml" = {
         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/starship.toml";
       };
