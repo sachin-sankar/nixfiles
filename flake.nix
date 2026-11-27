@@ -15,7 +15,6 @@
     };
 
     dolphin-overlay.url = "github:MattiDragon/dolphin-overlay";
-    hermes-agent.url = "github:NousResearch/hermes-agent";
 
   };
 
@@ -24,7 +23,6 @@
       self,
       nixpkgs,
       dolphin-overlay,
-      hermes-agent,
       ...
     }@inputs:
     {
@@ -38,7 +36,6 @@
       };
       nixosConfigurations.nixlab = nixpkgs.lib.nixosSystem {
         modules = [
-          hermes-agent.nixosModules.default
           ./hosts/homelab/configuration.nix
         ];
       };
