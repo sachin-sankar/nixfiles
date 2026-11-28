@@ -26,7 +26,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "pavilion";
     networkmanager.enable = true;
     firewall.enable = false;
   };
@@ -124,7 +124,6 @@
     {
       hostName = "100.88.73.86";
       sshUser = "sachin";
-      sshKey = "/root/.ssh/id_ed25519_homelab";
       system = "x86_64-linux";
       protocol = "ssh-ng";
       maxJobs = 4;

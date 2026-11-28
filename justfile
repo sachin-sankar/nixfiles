@@ -1,11 +1,11 @@
-switch-desktop:
-  nh os switch -H nixos
+switch-pavilion:
+  nh os switch -H pavilion
 
-switch-homelab:
-  nh os switch -H nixlab --build-host homelab --target-host homelab
+switch-precison:
+  nh os switch -H precision --build-host precision --target-host precision
 
-update-desktop:
-  nh os switch -H nixos -u --refresh
+update-pavilion:
+  nh os switch -H pavilion -u --refresh
 
-update-homelab:
-  nh os switch -H nixlab --build-host homelab --target-host homelab -u --refresh
+update-precision:
+  nh os switch -H precision --build-host precision --target-host precision -u --refresh

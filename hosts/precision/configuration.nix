@@ -1,5 +1,3 @@
-# Headless laptop server (Dell Precision 3581, Intel iGPU + NVIDIA RTX A1000 6GB)
-
 { config, pkgs, ... }:
 
 {
@@ -13,7 +11,7 @@
   ];
 
   # ------------------------------------------------------------- network
-  networking.hostName = "nixlab";
+  networking.hostName = "precision";
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = false;
@@ -62,8 +60,8 @@
       "docker"
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5GbRgWQOo79vZ5FWsSXhUGLHcLxNq8SCQqmlYBcBpO sachin@nixos"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINLjEIgTqgcC1Gf0Sx02HsrCYo54eb+FGjxtdi1++UoB root@nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5GbRgWQOo79vZ5FWsSXhUGLHcLxNq8SCQqmlYBcBpO sachin@pavilion"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINLjEIgTqgcC1Gf0Sx02HsrCYo54eb+FGjxtdi1++UoB root@pavilion"
     ];
   };
 

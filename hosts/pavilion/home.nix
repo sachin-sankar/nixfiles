@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  dotfiles = "${config.home.homeDirectory}/nixfiles/hosts/desktop/dotfiles";
+  dotfiles = "${config.home.homeDirectory}/nixfiles/hosts/pavilion/dotfiles";
 in
 
 {

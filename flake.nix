@@ -26,17 +26,17 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.pavilion = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/desktop/configuration.nix
+          ./hosts/pavilion/configuration.nix
           inputs.home-manager.nixosModules.default
           { nixpkgs.overlays = [ dolphin-overlay.overlays.default ]; }
         ];
       };
-      nixosConfigurations.nixlab = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.precision = nixpkgs.lib.nixosSystem {
         modules = [
-          ./hosts/homelab/configuration.nix
+          ./hosts/precision/configuration.nix
         ];
       };
     };
